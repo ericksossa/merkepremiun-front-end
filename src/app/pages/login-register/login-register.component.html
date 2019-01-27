@@ -1,0 +1,43 @@
+<section id="form">
+  <!--form-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-1">
+        <div class="login-form">
+          <!--login form-->
+          <h2>Ingresa a tu cuenta</h2>
+          <form action="#">
+            <input type="text" placeholder="Nombre" />
+            <input type="password" placeholder="Contraseña" />
+            <span>
+              <input type="checkbox" class="checkbox">
+              Recordar
+            </span>
+            <button type="submit" class="btn btn-default">Iniciar sesión</button>
+          </form>
+        </div>
+        <!--/login form-->
+      </div>
+      <div class="col-sm-1">
+        <h2 class="or">O</h2>
+      </div>
+      <div class="col-sm-4">
+        <div class="signup-form">
+          <!--sign up form-->
+          <h2>Nuevo usuario</h2>
+          <form ngNativeValidate [formGroup]="forma" (ngSubmit)="toRegister()">
+            <input type="text" placeholder="Nombre" />
+            <input type="email" placeholder="Correo electrónico" />
+            <input type="password" placeholder="Contraseña" />
+            <input type="password" placeholder="Confirmar contraseña" />
+            <input type="text" placeholder="Teléfono" />
+            <input type="text" placeholder="Ciudad" />
+            <button type="submit" class="btn btn-default">Regístrate</button>
+          </form>
+        </div>
+        <!--/sign up form-->
+      </div>
+    </div>
+  </div>
+</section>
+<!--/form-->
