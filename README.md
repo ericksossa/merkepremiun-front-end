@@ -2,7 +2,7 @@
 
 Proyecto en angular, tienda virtual para Merke-Premium.
 
-#Comandos necesarios
+# Comandos necesarios
 
 -npm install
 

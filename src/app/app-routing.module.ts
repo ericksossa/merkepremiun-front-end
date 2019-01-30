@@ -7,10 +7,11 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginRegisterComponent },
-  { path: '**', component: NopagefoundComponent }
+  { path: 'contact', component: ContactComponent },
+  // { path: '**', component: NopagefoundComponent }
 
 
 ];

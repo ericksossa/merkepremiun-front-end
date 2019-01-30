@@ -1,9 +1,10 @@
 <app-header></app-header>
-<!-- <app-slider></app-slider> -->
+<app-slider [hidden]="isVisible"></app-slider>
 <section>
   <div class="container">
 
-    <!-- <app-sidebar></app-sidebar> -->
+    <app-sidebar></app-sidebar>
+    <!-- <app-home></app-home> -->
     <router-outlet></router-outlet>
 
   </div>
