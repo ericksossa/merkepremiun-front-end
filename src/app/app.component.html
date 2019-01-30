@@ -1,14 +1,13 @@
+<!-- head -->
 <app-header></app-header>
-<app-slider [hidden]="isVisible"></app-slider>
+<!-- /head -->
+<!-- container -->
 <section>
   <div class="container">
-
-    <app-sidebar></app-sidebar>
-    <!-- <app-home></app-home> -->
+    <!-- content -->
     <router-outlet></router-outlet>
-
   </div>
-
 </section>
-
+<!-- /container -->
+<!-- footer -->
 <app-footer></app-footer>
