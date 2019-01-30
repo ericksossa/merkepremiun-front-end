@@ -7,17 +7,18 @@
         <div class="col-sm-6">
           <div class="contactinfo">
             <ul class="nav nav-pills">
-              <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i> servicioalcliente@merkepremium.com</a></li>
+              <li><a href="tel:+57 3007840930"><i class="fa fa-phone"></i></a></li>
+              <li><a href="mailto:servicioalcliente@merkepremium.com?subject=Email%20Subject"><i class="fa fa-envelope"></i>
+                  servicioalcliente@merkepremium.com</a></li>
             </ul>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="social-icons pull-right">
             <ul class="nav navbar-nav">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://www.facebook.com/Merkepremium-189690078382366/" target="newtab"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://www.instagram.com/merkepremium/" target="newtab"><i class="fa fa-instagram"></i></a></li>
             </ul>
           </div>
         </div>
@@ -32,7 +33,7 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="logo pull-left">
-            <a href="index.html"><img src="assets/images/home/logo.png" alt="" /></a>
+            <a routerLink="home"><img src="assets/images/home/logo.png" /></a>
           </div>
 
         </div>
@@ -67,22 +68,16 @@
           </div>
           <div class="mainmenu pull-left">
             <ul class="nav navbar-nav collapse navbar-collapse">
-              <li><a routerLink="home" routerLinkActive="active" >Inicio</a></li>
+              <li><a routerLink="home" routerLinkActive="active">Inicio</a></li>
               <li class="dropdown"><a routerLinkActive="active">Tienda<i class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
                   <li><a href="shop.html">Productos</a></li>
                   <li><a href="product-details.html">Productos Detalle</a></li>
                   <li><a href="checkout.html">Checkout</a></li>
                   <li><a href="cart.html">Carro</a></li>
-                  <li><a href="login.html">Iniciar sesión</a></li>
+                  <li><a routerLink="login">Iniciar sesión</a></li>
                 </ul>
               </li>
-              <!-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                <ul role="menu" class="sub-menu">
-                  <li><a href="blog.html">Blog List</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-              </li> -->
               <li><a routerLinkActive="active" routerLink="/contact">Contactenos</a></li>
             </ul>
           </div>
@@ -98,5 +93,3 @@
   <!--/header-bottom-->
 </header>
 <!--/header-->
-
-
