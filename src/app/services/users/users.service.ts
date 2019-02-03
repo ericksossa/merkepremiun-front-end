@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,4 +7,8 @@ import { HttpClient } from 'selenium-webdriver/http';
 export class UsersService {
 
   constructor(private http: HttpClient) { }
+
+  getUsers() {
+
+  }
 }

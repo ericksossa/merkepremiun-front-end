@@ -2,3 +2,5 @@
 
 export { GuardsGuard } from './guards/guards.guard';
 export { UsersService } from './users/users.service';
+
+export { AuthService } from './auth/auth.service';
