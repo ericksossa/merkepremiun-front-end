@@ -6,11 +6,21 @@
         <div class="login-form">
           <!--login form-->
           <h2>Ingresa a tu cuenta</h2>
-          <form action="#">
-            <input type="text" placeholder="Usuario" />
-            <input type="password" placeholder="Contraseña" />
+          <form #form1="ngForm" (ngSubmit)="passIn(form1)">
+            <div class="form-group">
+              <input ngModel name="username" type="text" placeholder="Usuario" class="form-control" required />
+              <div *ngIf="submitted2 && f['username'].errors" class="text-danger"><small>
+                  Por favor, escribe tu usuario.
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input ngModel name="password" type="password" placeholder="Contraseña" class="form-control" required />
+              <div *ngIf="submitted2 && f['password'].errors" class="text-danger"><small>
+                  Por favor, escribe tu contraseña.
+                </small> </div>
+            </div>
             <span>
-              <input type="checkbox" class="checkbox">
+              <input [ngModel]="remember" name="remember" type="checkbox" class="checkbox">
               Recordar
             </span>
             <button type="submit" class="btn btn-default">Iniciar sesión</button>
@@ -34,14 +44,14 @@
                 </small> </div>
             </div>
             <div class="form-group">
-              <input class="form-control" formControlName="username" type="text" placeholder="Nombre de usuario" />
+              <input class="form-control" formControlName="username" type="text" #user placeholder="Nombre de usuario" />
               <div *ngIf="submitted && f['username'].errors" class="text-danger"><small>
                   El nombre de usuario es
                   obligatorio.*
                 </small> </div>
             </div>
             <div class="form-group">
-              <input formControlName="email" type="email" class="form-control" placeholder="Correo electrónico" />
+              <input formControlName="email" type="email" class="form-control" #email placeholder="Correo electrónico" />
               <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                 <div *ngIf="f['email'].errors.required" class="text-danger"><small>
                     El correo es obligatorio.*
@@ -71,7 +81,7 @@
                 </small> </div>
             </div>
             <div class="form-group">
-              <input formControlName="adress" type="text" placeholder="Dirección" class="form-control" />
+              <input formControlName="adress" autocomplete="street-address" type="text" placeholder="Dirección" class="form-control" />
               <div *ngIf="submitted && f['adress'].errors" class="text-danger"><small>
                   La dirección es
                   obligatorio.*
@@ -79,10 +89,13 @@
             </div>
             <div class="form-group">
               <input formControlName="telephone" type="tel" type="text" class="form-control bfh-phone" value="5555555555"
-                data-format="+57 (ddd) ddd-dddd" placeholder="Teléfono" />
+                data-format="+57 (ddd)ddd-dddd" placeholder="Teléfono" />
               <div *ngIf="submitted && f['telephone'].errors" class="text-danger"><small>
                   El teléfono es
                   obligatorio.*
+                </small> </div>
+              <div *ngIf="submitted && f['telephone'].errors?.maxlength" class="text-danger"><small>
+                  Sobrepasaste el número máximo de caracteres.*
                 </small> </div>
             </div>
             <div class="form-group">
@@ -91,7 +104,7 @@
                   La ciudad es obligatoria.*
                 </small> </div>
             </div>
-            {{forma.valid}}
+
             <button type="submit" class="btn btn-default">Regístrate</button>
           </form>
         </div>

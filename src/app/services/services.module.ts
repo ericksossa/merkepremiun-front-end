@@ -7,14 +7,16 @@ que contiene todos los servicios**/
 import {
   UsersService,
   GuardsGuard,
-  AuthService
+  AuthService,
+  TokenStorageService
 } from '../services/service.index';
 
 @NgModule({
   providers: [
     UsersService,
     GuardsGuard,
-    AuthService
+    AuthService,
+    TokenStorageService
   ],
   declarations: [],
   imports: [

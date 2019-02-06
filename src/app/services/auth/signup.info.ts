@@ -20,6 +20,5 @@ export class SignUpInfo {
         this.city = city;
         this.telephone = telephone;
         this.roles = ['CLIENTE'];
-        this.numberid = '5455';
     }
 }
