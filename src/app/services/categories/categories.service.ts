@@ -16,5 +16,23 @@ export class CategoriesService {
       .pipe(map((resp: any) => resp));
   }
 
+  createCategory(category: any) {
+    let url = URL_SERVICES + `api/v1/category/create`;
+    return this.http.post(url, category)
+      .pipe(map((resp: any) => resp));
+  }
+
+  deleteCategory(id: number, category: any) {
+    let url = URL_SERVICES + `api/v1/category/delete/${id}`;
+    return this.http.put(url, category)
+      .pipe(map((resp: any) => resp));
+  }
+
+  updateCategory(id: number, category: any) {
+    let url = URL_SERVICES + `api/v1/category/update/${id}`;
+    return this.http.put(url, category)
+      .pipe(map((resp: any) => resp));
+  }
+
 
 }
