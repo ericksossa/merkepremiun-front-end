@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { PasswordValidation } from './password.validate';
 import { AuthLoginInfo } from '../../services/auth/login.info';
 import { TokenStorageService } from '../../services/auth/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-register',
@@ -22,8 +23,10 @@ export class LoginRegisterComponent implements OnInit {
   errorMessage = '';
   username: any;
   remember: boolean;
+  roles: string[] = [];
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
+    private router: Router,
     private tokenStorage: TokenStorageService
   ) { }
 
@@ -105,8 +108,6 @@ export class LoginRegisterComponent implements OnInit {
 
   passIn(form: any) {
     this.submitted2 = true;
-    console.log(form);
-
     // validacion
     if (form.invalid) {
       return;
@@ -121,13 +122,13 @@ export class LoginRegisterComponent implements OnInit {
     );
     this.authService.attemptAuth(userAuth, form.remember)
       .subscribe(resp => {
-        console.log(resp);
-        
         this.tokenStorage.saveToken(resp.data.accessToken);
         this.tokenStorage.saveRefreshToken(resp.data.refreshToken);
         this.tokenStorage.saveUsername(resp.data.username);
         this.tokenStorage.saveAuthorities(resp.data.authorities);
 
+
+        this.router.navigate(['']);
       },
         resp => {
           this.errorMessage = resp.error.errors.message;
@@ -153,7 +154,6 @@ export class LoginRegisterComponent implements OnInit {
 
   validFocus() {
     if (this.err.search('nombre') === 3) {
-
       this.userInput.nativeElement.focus();
     } else {
       this.emailInput.nativeElement.focus();

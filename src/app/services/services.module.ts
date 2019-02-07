@@ -5,17 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 /** importacion del index Service
 que contiene todos los servicios**/
 import {
-  UsersService,
   GuardsGuard,
   AuthService,
+  CategoriesService,
   TokenStorageService
 } from '../services/service.index';
 
 @NgModule({
   providers: [
-    UsersService,
     GuardsGuard,
     AuthService,
+    CategoriesService,
     TokenStorageService
   ],
   declarations: [],

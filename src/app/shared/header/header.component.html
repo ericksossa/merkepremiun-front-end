@@ -40,12 +40,17 @@
         <div class="col-sm-8">
           <div class="shop-menu pull-right">
             <ul class="nav navbar-nav">
-              <li><a href="#"><i class="fa fa-user"></i> Cuenta <span *ngIf="info">{{info.username}}</span> </a></li>
-              <li><a href="#"><i class="fa fa-star"></i> Lista de compras</a></li>
-              <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Revisa</a></li>
+              <li *ngIf="info" class="dropdown"><a href="#"><i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
+                </a>
+                <ul role="menu" class="sub-menu">
+                  <li><a (click)="logout()">Cerrar sesión</a></li>
+                </ul>
+              </li>
+              <!-- <li><a href="#"><i class="fa fa-star"></i> Lista de compras</a></li>
+              <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Revisa</a></li> -->
               <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Carro</a></li>
-              <li><a routerLinkActive="active" routerLink="/login" ><i class="fa fa-lock"></i>Inicia sesión o 
-                registrate</a></li>
+              <li><a routerLinkActive="active" routerLink="/login"><i class="fa fa-lock"></i>Inicia sesión o
+                  registrate</a></li>
             </ul>
           </div>
         </div>
@@ -80,6 +85,7 @@
                 </ul>
               </li>
               <li><a routerLinkActive="active" routerLink="/contact">Contactenos</a></li>
+              <li><a routerLinkActive="active" routerLink="/admin/categories">Administrar</a></li>
             </ul>
           </div>
         </div>
