@@ -20,18 +20,12 @@ export class SidebarComponent implements OnInit {
 
   getCategories() {
     this.categoriesService.allCategories()
-      .subscribe(resp => {
-        console.log(resp);
-        this.categories = resp.data;
-      });
+      .subscribe(resp => this.categories = resp.data);
   }
 
   getReferences() {
     this.referenceService.allReferences()
-      .subscribe(resp => {
-        console.log(resp);
-        this.references = resp.data;
-      });
+      .subscribe(resp => this.references = resp.data);
   }
 
 

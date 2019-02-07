@@ -6,6 +6,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductComponent } from './product/product.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
+import { ReferencesComponent } from './admin/references/references.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { CategoriesComponent } from './admin/categories/categories.component';
     ProductComponent,
     ContactComponent,
     CategoriesComponent,
+    ReferencesComponent,
   ],
   imports: [
     CommonModule,

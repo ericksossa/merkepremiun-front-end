@@ -40,7 +40,7 @@
         <div class="col-sm-8">
           <div class="shop-menu pull-right">
             <ul class="nav navbar-nav">
-              <li *ngIf="info" class="dropdown"><a href="#"><i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
+              <li *ngIf="info" class="dropdown"><a><i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
                 </a>
                 <ul role="menu" class="sub-menu">
                   <li><a (click)="logout()">Cerrar sesión</a></li>
@@ -85,7 +85,12 @@
                 </ul>
               </li>
               <li><a routerLinkActive="active" routerLink="/contact">Contactenos</a></li>
-              <li><a routerLinkActive="active" routerLink="/admin/categories">Administrar</a></li>
+              <li class="dropdown"><a routerLinkActive="active">Administrar</a>
+                <ul role="menu" class="sub-menu">
+                  <li><a routerLinkActive="active" routerLink="/admin/categories">Categorías</a></li>
+                  <li><a routerLinkActive="active" routerLink="/admin/references">Marcas</a></li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>

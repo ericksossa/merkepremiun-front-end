@@ -19,9 +19,7 @@ export class CategoriesComponent implements OnInit {
 
   allCategories() {
     this.categoriesService.allCategories()
-      .subscribe(resp => {
-        this.categories = resp.data;
-      });
+      .subscribe(resp => this.categories = resp.data);
   }
 
   onSave(category: any) {
