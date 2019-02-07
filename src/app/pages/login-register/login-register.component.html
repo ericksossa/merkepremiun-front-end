@@ -9,15 +9,15 @@
           <form #form1="ngForm" (ngSubmit)="passIn(form1)">
             <div class="form-group">
               <input ngModel name="username" type="text" placeholder="Usuario" class="form-control" required />
-              <div *ngIf="submitted2 && f['username'].errors" class="text-danger"><small>
+              <!-- <div *ngIf="submitted2 && f['username'].status" class="text-danger"><small>
                   Por favor, escribe tu usuario.
-                </small> </div>
+                </small> </div> -->
             </div>
             <div class="form-group">
               <input ngModel name="password" type="password" placeholder="Contraseña" class="form-control" required />
-              <div *ngIf="submitted2 && f['password'].errors" class="text-danger"><small>
+              <!-- <div *ngIf="submitted2 && f['password'].status" class="text-danger"><small>
                   Por favor, escribe tu contraseña.
-                </small> </div>
+                </small> </div> -->
             </div>
             <span>
               <input [ngModel]="remember" name="remember" type="checkbox" class="checkbox">

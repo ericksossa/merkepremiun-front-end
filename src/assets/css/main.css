@@ -2471,7 +2471,7 @@ textarea {
 #contact-page .form-control:focus,
 #contact-page .form-control:hover {
   box-shadow: inherit;
-  border-color: #FDB45E;
+  border-color: #75FF75;
 }
 
 #contact-page .contact-info {
