@@ -7,6 +7,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
 import { CategoriesComponent } from './pages/admin/categories/categories.component';
 import { ReferencesComponent } from './pages/admin/references/references.component';
+import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginRegisterComponent },
   { path: 'admin/categories', component: CategoriesComponent },
   { path: 'admin/references', component: ReferencesComponent },
+  { path: 'admin/products', component: AdminProductComponent },
   { path: 'contact', component: ContactComponent },
   // { path: '**', component: NopagefoundComponent }
 

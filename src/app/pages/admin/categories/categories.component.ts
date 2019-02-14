@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from '../../../services/categories/categories.service';
 import swal from 'sweetalert2';
-import { Category } from '../../../models/category.model';
+import { CategoryModel } from '../../../models/category.model';
+import { CategoriesService } from 'src/app/services/service.index';
 
 @Component({
   selector: 'app-categories',
@@ -9,8 +9,8 @@ import { Category } from '../../../models/category.model';
   styles: []
 })
 export class CategoriesComponent implements OnInit {
-  categories: Category[] = [];
-  selectCategory = new Category();
+  categories: CategoryModel[] = [];
+  selectCategory = new CategoryModel();
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ReferenceService } from '../../../services/references/reference.service';
-import { Reference } from '../../../models/reference.model';
+import { ReferenceModel } from '../../../models/reference.model';
 import swal from 'sweetalert2';
-import { Category } from '../../../models/category.model';
-import { CategoriesService } from '../../../services/categories/categories.service';
+import { CategoryModel } from '../../../models/category.model';
+import { ReferenceService, CategoriesService } from 'src/app/services/service.index';
 
 @Component({
   selector: 'app-references',
@@ -12,8 +11,8 @@ import { CategoriesService } from '../../../services/categories/categories.servi
 })
 export class ReferencesComponent implements OnInit {
   references: any[] = [];
-  categories: Category[] = [];
-  selectReference = new Reference();
+  categories: CategoryModel[] = [];
+  selectReference = new ReferenceModel();
   constructor(private referecesService: ReferenceService,
     private categoriesService: CategoriesService) { }
 

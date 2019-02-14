@@ -1,0 +1,98 @@
+<div id="contact-page" class="container">
+  <div class="bg">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title text-center">Gestionar productos</h2>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Peso</th>
+              <th>Inventario</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                {{product.imageURL}}
+              </td>
+              <td>
+                {{product.name}}
+              </td>
+              <td class="text-right">
+                {{product.price | currency}}
+              </td>
+              <td class="text-right">
+                {{product.weight}}
+              </td>
+              <td class="text-right">
+                {{product.stock}}
+              </td>
+              <td>
+                <a class="btn btn-secondary " (click)="openEdit(product)">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn btn-secondary " (click)="onDelete(product)">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-3">
+        <form #f="ngForm" (ngSubmit)="onSave(f)">
+          <label>Nombre del producto</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.name" name="name" class="form-control" placeholder="Ingresa el producto"
+              type="text" required>
+          </div>
+          <label>Precio</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.price" name="price" class="form-control" placeholder="Ingresa el precio"
+              type="number" step="any" min="0" required>
+          </div>
+          <label>Peso</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.weight" name="weight" class="form-control" placeholder="Ingresa el peso"
+              type="number" step="any" min="0" required>
+          </div>
+          <label>Inventario</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control" placeholder="Articulos en el inventario"
+              type="number" step="any" min="0" required>
+          </div>
+          <label>Marca</label>
+          <div class="form-group">
+            <select [(ngModel)]="selectProduct.referenceId" name="referenceId" class="form-control" required>
+              <option value="">Selecciona una marca</option>
+              <option *ngFor="let reference of references" [value]="reference['id']">
+                {{ reference.name }}
+              </option>
+            </select>
+          </div>
+          <label>Imagen</label>
+          <div class="form-group">
+            <input (change)="readUrl($event.target.files[0])" accept="image/*" name="stock" class="form-control" 
+              type="file"  required>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div id="gmap" class="contact-map">
+</div>

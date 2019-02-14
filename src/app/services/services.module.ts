@@ -8,6 +8,8 @@ import {
   GuardsGuard,
   AuthService,
   CategoriesService,
+  ProductService,
+  ReferenceService,
   TokenStorageService
 } from '../services/service.index';
 
@@ -16,6 +18,8 @@ import {
     GuardsGuard,
     AuthService,
     CategoriesService,
+    ProductService,
+    ReferenceService,
     TokenStorageService
   ],
   declarations: [],
