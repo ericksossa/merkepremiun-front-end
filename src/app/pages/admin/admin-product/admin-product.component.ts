@@ -71,9 +71,14 @@ export class AdminProductComponent implements OnInit {
 
 
   onSave(product: any) {
+    console.log(product);
+
+    if (!product.valid) {
+      return;
+    }
+
     if (!this.selectProduct.id) {
       // save
-      console.log(product.value);
 
       this.productService.createProduct(product.value, this.uploadImage)
         .subscribe(resp => {

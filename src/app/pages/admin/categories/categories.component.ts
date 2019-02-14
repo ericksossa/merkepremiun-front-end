@@ -9,6 +9,7 @@ import { CategoriesService } from 'src/app/services/service.index';
   styles: []
 })
 export class CategoriesComponent implements OnInit {
+  submitted = false;
   categories: CategoryModel[] = [];
   selectCategory = new CategoryModel();
   constructor(private categoriesService: CategoriesService) { }
@@ -23,10 +24,16 @@ export class CategoriesComponent implements OnInit {
   }
 
   onSave(category: any) {
+    this.submitted = true;
+    if (!category.valid) {
+      return;
+    }
+
     if (!this.selectCategory.id) {
       // save
       this.categoriesService.createCategory(category.value)
         .subscribe(resp => {
+          // bien
           this.allCategories();
           const Toast = swal.mixin({
             toast: true,
@@ -37,6 +44,20 @@ export class CategoriesComponent implements OnInit {
           Toast.fire({
             type: 'success',
             title: `${resp.message}`,
+          });
+          category.reset();
+          this.submitted = false;
+        }, err => {
+          // error
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${err.error.message}`,
           });
         });
 
@@ -55,7 +76,21 @@ export class CategoriesComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
+          category.reset();
+          this.submitted = false;
 
+        }, err => {
+          // error
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${err.error.message}`,
+          });
         });
     }
 

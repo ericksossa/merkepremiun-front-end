@@ -71,6 +71,10 @@
             <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control" placeholder="Articulos en el inventario"
               type="number" step="any" min="0" required>
           </div>
+          
+          <div class="form-group">
+              <label><input [(ngModel)]="selectProduct.recommended" name="recommended" type="checkbox"> Recomendado</label>
+            </div>
           <label>Marca</label>
           <div class="form-group">
             <select [(ngModel)]="selectProduct.referenceId" name="referenceId" class="form-control" required>

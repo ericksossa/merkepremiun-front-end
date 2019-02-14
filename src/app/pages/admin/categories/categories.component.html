@@ -18,7 +18,7 @@
 
           <tbody>
             <tr *ngFor="let cat of categories">
-              <td >
+              <td>
                 {{cat.name}}
               </td>
               <td>
@@ -35,12 +35,15 @@
       </div>
 
       <div class="col-sm-3">
-        <div class="card-title">
-          Nombre
-        </div>
         <form #f="ngForm" (ngSubmit)="onSave(f)">
           <div class="form-group">
-            <input [(ngModel)]="selectCategory.name" name="name" class="form-control" placeholder="Ingresa la categoría" type="text" required>
+            <label>Categoría</label>
+            <input [(ngModel)]="selectCategory.name" name="name" class="form-control" placeholder="Ingresa la categoría"
+              type="text" required>
+            <div *ngIf="submitted && f.form.invalid" class="text-danger"><small>
+                El nombre de la categoría es
+                obligatorio.*
+              </small> </div>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
 

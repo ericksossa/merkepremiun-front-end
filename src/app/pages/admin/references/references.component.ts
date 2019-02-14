@@ -13,8 +13,9 @@ export class ReferencesComponent implements OnInit {
   references: any[] = [];
   categories: CategoryModel[] = [];
   selectReference = new ReferenceModel();
+  submitted = false;
   constructor(private referecesService: ReferenceService,
-    private categoriesService: CategoriesService) { }
+              private categoriesService: CategoriesService) { }
 
   ngOnInit() {
     this.allReferences();
@@ -23,14 +24,17 @@ export class ReferencesComponent implements OnInit {
 
   allReferences() {
     this.referecesService.allReferences()
-      .subscribe(resp => this.references = resp.data);
+      .subscribe(resp => {
+        console.log(resp);
+
+        this.references = resp.data;
+      });
   }
 
   allCategories() {
     this.categoriesService.allCategories()
       .subscribe(resp => this.categories = resp.data);
   }
-
 
   openEdit(reference: any) {
     this.selectReference = reference;
@@ -54,6 +58,11 @@ export class ReferencesComponent implements OnInit {
   }
 
   onSave(reference: any) {
+    this.submitted = true;
+    if (!reference.valid) {
+      return;
+    }
+
     if (!this.selectReference.id) {
       // save
       console.log(reference.value);
@@ -70,6 +79,18 @@ export class ReferencesComponent implements OnInit {
           Toast.fire({
             type: 'success',
             title: `${resp.message}`,
+          });
+        }, err => {
+          // error
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${err.error.message}`,
           });
         });
 

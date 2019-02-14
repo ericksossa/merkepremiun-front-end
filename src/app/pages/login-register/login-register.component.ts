@@ -147,6 +147,7 @@ export class LoginRegisterComponent implements OnInit {
         }
       );
   }
+
   clearForm() {
     this.forma.reset();
     this.submitted = false;
