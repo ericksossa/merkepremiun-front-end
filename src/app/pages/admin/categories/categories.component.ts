@@ -31,6 +31,8 @@ export class CategoriesComponent implements OnInit {
 
     if (!this.selectCategory.id) {
       // save
+      console.log(category.value);
+      
       this.categoriesService.createCategory(category.value)
         .subscribe(resp => {
           // bien

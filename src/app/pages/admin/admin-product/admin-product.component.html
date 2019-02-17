@@ -19,11 +19,13 @@
               <th></th>
             </tr>
           </thead>
-
+          
           <tbody>
             <tr *ngFor="let product of products">
               <td>
-                {{product.imageURL}}
+                <a class="btn btn-secondary pull-center"  (click)="onImage(product.imageURL )" >
+                  <i class="glyphicon glyphicon-picture"></i>
+                </a>
               </td>
               <td>
                 {{product.name}}
@@ -54,7 +56,7 @@
           <label>Nombre del producto</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.name" name="name" class="form-control" placeholder="Ingresa el producto"
-              type="text" required>
+            type="text" required>
           </div>
           <label>Precio</label>
           <div class="form-group">
@@ -64,17 +66,17 @@
           <label>Peso</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.weight" name="weight" class="form-control" placeholder="Ingresa el peso"
-              type="number" step="any" min="0" required>
+            type="number" step="any" min="0" required>
           </div>
           <label>Inventario</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control" placeholder="Articulos en el inventario"
-              type="number" step="any" min="0" required>
+            type="number" step="any" min="0" required>
           </div>
           
           <div class="form-group">
-              <label><input [(ngModel)]="selectProduct.recommended" name="recommended" type="checkbox"> Recomendado</label>
-            </div>
+            <label><input [(ngModel)]="selectProduct.recommended" name="recommended" type="checkbox"> Recomendado</label>
+          </div>
           <label>Marca</label>
           <div class="form-group">
             <select [(ngModel)]="selectProduct.referenceId" name="referenceId" class="form-control" required>
@@ -86,17 +88,19 @@
           </div>
           <label>Imagen</label>
           <div class="form-group">
-            <input (change)="readUrl($event.target.files[0])" accept="image/*" name="stock" class="form-control" 
-              type="file"  required>
+            <input (change)="readUrl($event.target.files[0])" accept="image/*" name="stock" class="form-control" type="file"
+              required>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
-
+          
         </form>
       </div>
     </div>
-
+    
   </div>
-
 </div>
 <div id="gmap" class="contact-map">
 </div>
+<!-- modal -->
+
+<app-modal [valor]="path"></app-modal>

@@ -17,6 +17,12 @@ export class ProductService {
       map((resp: any) => resp));
   }
 
+  allRecommendedProducts() {
+    let url = URL_SERVICES + `api/v1/product/allrecommended`;
+    return this.http.get(url).pipe(
+      map((resp: any) => resp));
+  }
+
   createProduct(product: any, img: File) {
     let url = URL_SERVICES + `api/v1/product/create`;
     const formData = new FormData();

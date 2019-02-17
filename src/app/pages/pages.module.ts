@@ -8,6 +8,9 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { ReferencesComponent } from './admin/references/references.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import { ModalComponent } from '../components/modal/modal.component';
+import { CartComponent } from './cart/cart.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +20,14 @@ import { AdminProductComponent } from './admin/admin-product/admin-product.compo
     CategoriesComponent,
     ReferencesComponent,
     AdminProductComponent,
+    ModalComponent,
+    CartComponent
+
   ],
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule
   ],
   exports: []

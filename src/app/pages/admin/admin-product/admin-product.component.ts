@@ -3,7 +3,9 @@ import swal from 'sweetalert2';
 import { ProductService } from '../../../services/product/product.service';
 import { ProductsModel } from '../../../models/product.model';
 import { ReferenceService } from 'src/app/services/service.index';
+import { URL_SERVICES } from '../../../config/config';
 
+declare var $: any;
 @Component({
   selector: 'app-admin-product',
   templateUrl: './admin-product.component.html',
@@ -15,12 +17,14 @@ export class AdminProductComponent implements OnInit {
   selectProduct = new ProductsModel();
   uploadImage: any;
   img: any;
+  path: any;
   constructor(private productService: ProductService,
     private referenceService: ReferenceService) { }
 
   ngOnInit() {
     this.allProducts();
     this.allReferences();
+    // this.path = URL_SERVICES + `api/v1/product/allimages/`;
   }
 
   openEdit(product: any) {
@@ -113,6 +117,12 @@ export class AdminProductComponent implements OnInit {
         });
     }
 
+  }
+
+  // vista previa de la img
+  onImage(p: any) {
+    this.path = URL_SERVICES + `api/v1/product/allimages/${p}`;
+    $('#myModal').modal('show');
   }
 
 }

@@ -8,6 +8,8 @@ import { LoginRegisterComponent } from './pages/login-register/login-register.co
 import { CategoriesComponent } from './pages/admin/categories/categories.component';
 import { ReferencesComponent } from './pages/admin/references/references.component';
 import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
+import { ProductComponent } from './pages/product/product.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'admin/categories', component: CategoriesComponent },
   { path: 'admin/references', component: ReferencesComponent },
   { path: 'admin/products', component: AdminProductComponent },
+  { path: 'products', component: ProductComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'contact', component: ContactComponent },
   // { path: '**', component: NopagefoundComponent }
 
