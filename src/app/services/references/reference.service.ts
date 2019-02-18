@@ -18,7 +18,7 @@ export class ReferenceService {
 
   deleteCategory(id: number, reference: any) {
     let url = URL_SERVICES + `api/v1/references/delete/${id}`;
-    return this.http.put(url, reference)
+    return this.http.delete(url, reference)
       .pipe(map((resp: any) => resp));
   }
 

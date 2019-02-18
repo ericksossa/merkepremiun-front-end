@@ -3,6 +3,7 @@ import { ReferenceModel } from '../../../models/reference.model';
 import swal from 'sweetalert2';
 import { CategoryModel } from '../../../models/category.model';
 import { ReferenceService, CategoriesService } from 'src/app/services/service.index';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-references',
@@ -56,7 +57,9 @@ export class ReferencesComponent implements OnInit {
       });
   }
 
-  onSave(reference: any) {
+  onSave(reference: NgForm) {
+    console.log(reference);
+
     this.submitted = true;
     if (!reference.valid) {
       return;
@@ -64,8 +67,6 @@ export class ReferencesComponent implements OnInit {
 
     if (!this.selectReference.id) {
       // save
-      console.log(reference.value);
-
       this.referecesService.createReferences(reference.value)
         .subscribe(resp => {
           this.getReferences();
@@ -79,6 +80,8 @@ export class ReferencesComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
+          reference.reset();
+          this.submitted = false;
         }, err => {
           // error
           const Toast = swal.mixin({
@@ -108,7 +111,21 @@ export class ReferencesComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
-
+          reference.reset();
+          this.submitted = false;
+          this.selectReference.id = null;
+        }, err => {
+          // error
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${err.error.message}`,
+          });
         });
     }
 

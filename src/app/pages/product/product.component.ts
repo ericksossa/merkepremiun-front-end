@@ -9,6 +9,7 @@ import { URL_SERVICES } from '../../config/config';
 })
 export class ProductComponent implements OnInit {
   products: any[] = [];
+  pageActual: number = 1;
   path = URL_SERVICES + `api/v1/product/allimages/`;
   constructor(private productService: ProductService) { }
 

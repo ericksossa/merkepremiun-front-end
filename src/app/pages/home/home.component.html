@@ -8,19 +8,21 @@
 <!-- main content -->
 <div class="col-sm-9 padding-right">
 
+
+
   <div class="recommended_items" *ngIf="recommendProducts.length > 0">
     <!--recommended_items-->
     <h2 class="title text-center">Articulos recomendados</h2>
 
     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <div class="item active" *ngFor="let recommend of recommendProducts">
-          <div class="col-sm-4">
+        <div class="item active ">
+          <div class="col-sm-4" *ngFor="let recommend of recommendProducts">
             <div class="product-image-wrapper">
               <div class="single-products">
                 <div class="productinfo text-center">
                   <img src="{{path}}{{recommend.imageURL}}" alt="" />
-                  <h2>{{recommend.price | currency}}</h2>
+                  <h2>{{ recommend.price|currency }}</h2>
                   <p>{{recommend.name}}</p>
                   <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
                 </div>
@@ -28,34 +30,9 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-sm-4">
-            <div class="product-image-wrapper">
-              <div class="single-products">
-                <div class="productinfo text-center">
-                  <img src="assets/images/home/gallery2.jpeg" alt="" />
-                  <h2>$56</h2>
-                  <p>Easy</p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-                </div>
 
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="product-image-wrapper">
-              <div class="single-products">
-                <div class="productinfo text-center">
-                  <img src="assets/images/home/gallery3.jpeg" alt="" />
-                  <h2>$56</h2>
-                  <p>Easy</p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-                </div>
-
-              </div>
-            </div>
-          </div> -->
         </div>
-
+      
       </div>
       <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
         <i class="fa fa-angle-left"></i>
@@ -71,7 +48,7 @@
     <!--features_items-->
     <h2 class="title text-center">Nuestros Articulos</h2>
     <div class="col-sm-4" *ngFor="let product of products">
-      <div class="product-image-wrapper" >
+      <div class="product-image-wrapper">
         <div class="single-products">
           <div class="productinfo text-center">
             <img src="{{path}}{{product.imageURL}}" alt="" />
@@ -101,7 +78,7 @@
   <div class="category-tab" *ngIf="categories.length > 0">
     <!--category-tab-->
     <div class="col-sm-12">
-      <ul class="nav nav-tabs" >
+      <ul class="nav nav-tabs">
         <!-- class Active -->
         <li *ngFor="let category of categories"><a href="#tshirt" data-toggle="tab">{{category.name}}</a></li>
         <!-- <li><a href="#blazers" data-toggle="tab">Items2</a></li>

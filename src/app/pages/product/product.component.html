@@ -7,9 +7,9 @@
     <div class="features_items">
       <!--features_items-->
 
-      <div class="col-sm-4" *ngFor="let product of products">
-        <div class="product-image-wrapper" >
-          <div class="single-products" >
+      <div class="col-sm-4" *ngFor="let product of products | paginate: {itemsPerPage: 12, currentPage: pageActual} ">
+        <div class="product-image-wrapper">
+          <div class="single-products">
             <div class="productinfo text-center">
               <img src="{{path}}{{product.imageURL}}" alt="" />
               <h2>{{ product.price | currency }}</h2>
@@ -32,15 +32,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
 
-
-
-      <!-- <ul class="pagination">
-        <li class="active"><a href="">1</a></li>
-        <li><a href="">2</a></li>
-        <li><a href="">3</a></li>
-        <li><a href="">&raquo;</a></li>
-      </ul> -->
+      <pagination-controls autoHide="true" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
     </div>
     <!--features_items-->
   </div>

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// paginación
+import { NgxPaginationModule } from 'ngx-pagination';
 // pages
 import { ContactComponent } from './contact/contact.component';
 import { ProductComponent } from './product/product.component';
@@ -28,7 +30,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports: []
 })

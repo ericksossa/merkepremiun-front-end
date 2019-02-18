@@ -32,6 +32,8 @@ export class AdminProductComponent implements OnInit {
 
   openEdit(product: any) {
     this.selectProduct = product;
+    console.log(this.selectProduct);
+
   }
 
   getProducts() {
@@ -84,7 +86,6 @@ export class AdminProductComponent implements OnInit {
 
   onSave(product: any) {
     this.submitted = true;
-    product.value.recommended = this.isChecked;
     console.log(product.value);
     if (!product.valid) {
       return;
@@ -92,7 +93,6 @@ export class AdminProductComponent implements OnInit {
 
     if (!this.selectProduct.id) {
       // save
-
       this.productService.createProduct(product.value, this.uploadImage)
         .subscribe(resp => {
           this.getProducts();
@@ -106,6 +106,8 @@ export class AdminProductComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
+          product.reset();
+          this.submitted = false;
         }, err => {
           const Toast = swal.mixin({
             toast: true,
@@ -133,6 +135,20 @@ export class AdminProductComponent implements OnInit {
           Toast.fire({
             type: 'success',
             title: `${resp.message}`,
+          });
+          product.reset();
+          this.submitted = false;
+          this.selectProduct.id = null;
+        }, err => {
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${err.error.message}`,
           });
         });
     }

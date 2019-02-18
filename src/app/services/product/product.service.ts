@@ -31,6 +31,7 @@ export class ProductService {
     formData.append('weight', product.weight);
     formData.append('price', product.price);
     formData.append('stock', product.stock);
+    formData.append('recommended', product.recommended);
     formData.append('referenceId', product.referenceId);
     return this.http.post(url, formData)
       .pipe(map((resp: any) => resp));
@@ -38,7 +39,14 @@ export class ProductService {
 
   updateProducts(id: any, product: any) {
     let url = URL_SERVICES + `api/v1/product/update/${id}`;
-    return this.http.put(url, product)
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('weight', product.weight);
+    formData.append('price', product.price);
+    formData.append('stock', product.stock);
+    formData.append('recommended', product.recommended);
+    formData.append('referenceId', product.referenceId);
+    return this.http.put(url, formData)
       .pipe(map((resp: any) => resp));
   }
 

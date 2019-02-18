@@ -91,7 +91,8 @@
           </div>
 
           <div class="form-group">
-            <label><input [(ngModel)]="selectProduct.recommended" name="recommended"  (change)="changed($event.target.checked)" type="checkbox"> Recomendado</label>
+            <label><input [(ngModel)]="selectProduct.recommended" name="recommended" [checked]="selectProduct.recommended"
+                (change)="changed($event.target.checked)" type="checkbox"> Recomendado</label>
           </div>
           <label>Marca</label>
           <div class="form-group">

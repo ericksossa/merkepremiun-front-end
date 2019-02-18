@@ -43,10 +43,10 @@
           <div class="form-group">
             <input [(ngModel)]="selectReference.name" name="name" class="form-control" placeholder="Ingresa la marca"
               type="text" required>
-              <div *ngIf="submitted && f.form.invalid" class="text-danger"><small>
-                  El nombre de la marca es
-                  obligatorio.*
-                </small> </div>
+            <div *ngIf="submitted && f.form['controls'].name.invalid" class="text-danger"><small>
+                El nombre de la marca es
+                obligatorio.*
+              </small> </div>
           </div>
           <div class="form-group">
             <label>Categoría</label>
@@ -56,6 +56,9 @@
                 {{ cat.name }}
               </option>
             </select>
+            <div *ngIf="submitted && f.form['controls'].categoryId.invalid" class="text-danger"><small>
+                Por favor, selecciona una categoría.*
+              </small> </div>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
 
