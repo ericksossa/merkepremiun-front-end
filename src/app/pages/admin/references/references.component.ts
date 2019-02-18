@@ -15,23 +15,22 @@ export class ReferencesComponent implements OnInit {
   selectReference = new ReferenceModel();
   submitted = false;
   constructor(private referecesService: ReferenceService,
-              private categoriesService: CategoriesService) { }
+    private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    this.allReferences();
-    this.allCategories();
+    this.getReferences();
+    this.getCategories();
   }
 
-  allReferences() {
+  getReferences() {
     this.referecesService.allReferences()
       .subscribe(resp => {
         console.log(resp);
-
         this.references = resp.data;
       });
   }
 
-  allCategories() {
+  getCategories() {
     this.categoriesService.allCategories()
       .subscribe(resp => this.categories = resp.data);
   }
@@ -43,7 +42,7 @@ export class ReferencesComponent implements OnInit {
   onDelete(reference: any) {
     this.referecesService.deleteCategory(reference.id, reference)
       .subscribe(resp => {
-        this.allReferences();
+        this.getReferences();
         const Toast = swal.mixin({
           toast: true,
           position: 'top-end',
@@ -69,7 +68,7 @@ export class ReferencesComponent implements OnInit {
 
       this.referecesService.createReferences(reference.value)
         .subscribe(resp => {
-          this.allReferences();
+          this.getReferences();
           const Toast = swal.mixin({
             toast: true,
             position: 'top-end',
@@ -98,7 +97,7 @@ export class ReferencesComponent implements OnInit {
       // edit
       this.referecesService.updateReferences(this.selectReference.id, reference.value)
         .subscribe(resp => {
-          this.allReferences();
+          this.getReferences();
           const Toast = swal.mixin({
             toast: true,
             position: 'top-end',

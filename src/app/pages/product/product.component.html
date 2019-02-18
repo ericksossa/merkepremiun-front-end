@@ -7,8 +7,8 @@
     <div class="features_items">
       <!--features_items-->
 
-      <div class="col-sm-4">
-        <div class="product-image-wrapper" *ngFor="let product of products">
+      <div class="col-sm-4" *ngFor="let product of products">
+        <div class="product-image-wrapper" >
           <div class="single-products" >
             <div class="productinfo text-center">
               <img src="{{path}}{{product.imageURL}}" alt="" />

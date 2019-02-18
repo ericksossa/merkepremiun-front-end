@@ -18,12 +18,15 @@ export class AdminProductComponent implements OnInit {
   uploadImage: any;
   img: any;
   path: any;
+  isChecked: boolean;
+  submitted = false;
+
   constructor(private productService: ProductService,
     private referenceService: ReferenceService) { }
 
   ngOnInit() {
-    this.allProducts();
-    this.allReferences();
+    this.getProducts();
+    this.getReferences();
     // this.path = URL_SERVICES + `api/v1/product/allimages/`;
   }
 
@@ -31,12 +34,12 @@ export class AdminProductComponent implements OnInit {
     this.selectProduct = product;
   }
 
-  allProducts() {
+  getProducts() {
     this.productService.allProduct()
       .subscribe(resp => this.products = resp.data);
   }
 
-  allReferences() {
+  getReferences() {
     this.referenceService.allReferences()
       .subscribe(resp => this.references = resp.data);
   }
@@ -44,7 +47,7 @@ export class AdminProductComponent implements OnInit {
   onDelete(product: any) {
     this.productService.deleteProduct(product.id)
       .subscribe(resp => {
-        this.allProducts();
+        this.getProducts();
         const Toast = swal.mixin({
           toast: true,
           position: 'top-end',
@@ -73,10 +76,16 @@ export class AdminProductComponent implements OnInit {
     reader.readAsDataURL(archive);
   }
 
+  changed(event: any) {
+    this.isChecked = event;
+    console.log(this.isChecked);
+
+  }
 
   onSave(product: any) {
-    console.log(product);
-
+    this.submitted = true;
+    product.value.recommended = this.isChecked;
+    console.log(product.value);
     if (!product.valid) {
       return;
     }
@@ -86,7 +95,7 @@ export class AdminProductComponent implements OnInit {
 
       this.productService.createProduct(product.value, this.uploadImage)
         .subscribe(resp => {
-          this.allProducts();
+          this.getProducts();
           const Toast = swal.mixin({
             toast: true,
             position: 'top-end',
@@ -97,13 +106,24 @@ export class AdminProductComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
+        }, err => {
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${err.error.message}`,
+          });
         });
 
     } else {
       // edit
       this.productService.updateProducts(this.selectProduct.id, product.value)
         .subscribe(resp => {
-          this.allProducts();
+          this.getProducts();
           const Toast = swal.mixin({
             toast: true,
             position: 'top-end',

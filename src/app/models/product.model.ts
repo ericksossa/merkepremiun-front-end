@@ -6,7 +6,7 @@ export class ProductsModel {
         public price?: number,
         public imageURL?: string,
         public stock?: number,
-        public recommended?: any,
+        public recommended?: boolean,
         public referenceId = '',
     ) { }
 }

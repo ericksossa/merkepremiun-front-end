@@ -15,10 +15,10 @@ export class CategoriesComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    this.allCategories();
+    this.getCategories();
   }
 
-  allCategories() {
+  getCategories() {
     this.categoriesService.allCategories()
       .subscribe(resp => this.categories = resp.data);
   }
@@ -32,11 +32,11 @@ export class CategoriesComponent implements OnInit {
     if (!this.selectCategory.id) {
       // save
       console.log(category.value);
-      
+
       this.categoriesService.createCategory(category.value)
         .subscribe(resp => {
           // bien
-          this.allCategories();
+          this.getCategories();
           const Toast = swal.mixin({
             toast: true,
             position: 'top-end',
@@ -67,7 +67,7 @@ export class CategoriesComponent implements OnInit {
       // edit
       this.categoriesService.updateCategory(this.selectCategory.id, category.value)
         .subscribe(resp => {
-          this.allCategories();
+          this.getCategories();
           const Toast = swal.mixin({
             toast: true,
             position: 'top-end',
@@ -105,7 +105,7 @@ export class CategoriesComponent implements OnInit {
   onDelete(category: any) {
     this.categoriesService.deleteCategory(category.id, category)
       .subscribe((resp) => {
-        this.allCategories();
+        this.getCategories();
         const Toast = swal.mixin({
           toast: true,
           position: 'top-end',

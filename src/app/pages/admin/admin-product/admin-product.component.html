@@ -19,11 +19,11 @@
               <th></th>
             </tr>
           </thead>
-          
+
           <tbody>
             <tr *ngFor="let product of products">
               <td>
-                <a class="btn btn-secondary pull-center"  (click)="onImage(product.imageURL )" >
+                <a class="btn btn-secondary pull-center" (click)="onImage(product.imageURL )">
                   <i class="glyphicon glyphicon-picture"></i>
                 </a>
               </td>
@@ -56,26 +56,42 @@
           <label>Nombre del producto</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.name" name="name" class="form-control" placeholder="Ingresa el producto"
-            type="text" required>
+              type="text" required>
+            <div *ngIf="submitted && f.form['controls'].name.invalid" class="text-danger"><small>
+                El nombre del producto es
+                obligatorio.*
+              </small> </div>
           </div>
           <label>Precio</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.price" name="price" class="form-control" placeholder="Ingresa el precio"
               type="number" step="any" min="0" required>
+            <div *ngIf="submitted && f.form['controls'].price.invalid" class="text-danger"><small>
+                El precio es
+                obligatorio.*
+              </small> </div>
           </div>
           <label>Peso</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.weight" name="weight" class="form-control" placeholder="Ingresa el peso"
-            type="number" step="any" min="0" required>
+              type="number" step="any" min="0" required>
+            <div *ngIf="submitted && f.form['controls'].weight.invalid" class="text-danger"><small>
+                El peso es
+                obligatorio.*
+              </small> </div>
           </div>
           <label>Inventario</label>
           <div class="form-group">
             <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control" placeholder="Articulos en el inventario"
-            type="number" step="any" min="0" required>
+              type="number" step="any" min="0" required>
+            <div *ngIf="submitted && f.form['controls'].stock.invalid" class="text-danger"><small>
+                El inventario es
+                obligatorio.*
+              </small> </div>
           </div>
-          
+
           <div class="form-group">
-            <label><input [(ngModel)]="selectProduct.recommended" name="recommended" type="checkbox"> Recomendado</label>
+            <label><input [(ngModel)]="selectProduct.recommended" name="recommended"  (change)="changed($event.target.checked)" type="checkbox"> Recomendado</label>
           </div>
           <label>Marca</label>
           <div class="form-group">
@@ -85,6 +101,9 @@
                 {{ reference.name }}
               </option>
             </select>
+            <div *ngIf="submitted && f.form['controls'].referenceId.invalid" class="text-danger"><small>
+                Debes de seleccionar una marca.*
+              </small> </div>
           </div>
           <label>Imagen</label>
           <div class="form-group">
@@ -92,11 +111,11 @@
               required>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
-          
+
         </form>
       </div>
     </div>
-    
+
   </div>
 </div>
 <div id="gmap" class="contact-map">
