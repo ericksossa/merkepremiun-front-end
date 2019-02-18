@@ -9,15 +9,15 @@
           <form #form1="ngForm" (ngSubmit)="passIn(form1)">
             <div class="form-group">
               <input ngModel name="username" type="text" placeholder="Usuario" class="form-control" required />
-              <!-- <div *ngIf="submitted2 && f['username'].status" class="text-danger"><small>
+              <div *ngIf="submitted2 && form1.form['controls'].username.invalid" class="text-danger"><small>
                   Por favor, escribe tu usuario.
-                </small> </div> -->
+                </small> </div>
             </div>
             <div class="form-group">
               <input ngModel name="password" type="password" placeholder="Contraseña" class="form-control" required />
-              <!-- <div *ngIf="submitted2 && f['password'].status" class="text-danger"><small>
+              <div *ngIf="submitted2 && form1.form['controls'].password.invalid" class="text-danger"><small>
                   Por favor, escribe tu contraseña.
-                </small> </div> -->
+                </small> </div>
             </div>
             <span>
               <input [ngModel]="remember" name="remember" type="checkbox" class="checkbox">
@@ -28,6 +28,9 @@
         </div>
         <!--/login form-->
       </div>
+
+
+
       <div class="col-sm-1">
         <h2 class="or">O</h2>
       </div>
@@ -41,6 +44,13 @@
               <div *ngIf="submitted && f['name'].errors" class="text-danger"><small>
                   El nombre es
                   obligatorio.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" formControlName="identification" type="number" placeholder="N° Documento de identificación" />
+              <div *ngIf="submitted && f['identification'].errors" class="text-danger"><small>
+                  La identificación es
+                  obligatoria.*
                 </small> </div>
             </div>
             <div class="form-group">

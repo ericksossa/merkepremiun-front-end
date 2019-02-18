@@ -40,6 +40,7 @@ export class LoginRegisterComponent implements OnInit {
     this.forma = this.formBuilder.group({
       // validando campos del form
       name: [null, Validators.required],
+      identification: [null, Validators.required],
       username: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
@@ -53,6 +54,7 @@ export class LoginRegisterComponent implements OnInit {
       });
   }
 
+  // register
   onSubmit() {
     this.submitted = true;
 
@@ -63,6 +65,7 @@ export class LoginRegisterComponent implements OnInit {
 
     let user = new SignUpInfo(
       this.forma.value.name,
+      this.forma.value.identification,
       this.forma.value.username,
       this.forma.value.email,
       this.forma.value.password,
@@ -106,8 +109,11 @@ export class LoginRegisterComponent implements OnInit {
 
   }
 
+  // login
   passIn(form: any) {
     this.submitted2 = true;
+    console.log(form);
+
     // validacion
     if (form.invalid) {
       return;
@@ -126,11 +132,12 @@ export class LoginRegisterComponent implements OnInit {
         this.tokenStorage.saveRefreshToken(resp.data.refreshToken);
         this.tokenStorage.saveUsername(resp.data.username);
         this.tokenStorage.saveAuthorities(resp.data.authorities);
-
-
+        // bien
+        window.location.reload();
         this.router.navigate(['']);
       },
         resp => {
+          // error
           this.errorMessage = resp.error.errors.message;
           const Toast = swal.mixin({
             toast: true,

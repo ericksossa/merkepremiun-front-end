@@ -22,12 +22,11 @@ export class AuthService {
   private resfreshTokenUrl = URL_SERVICES + 'api/v1/auth/refreshtoken';
 
   constructor(private http: HttpClient,
-              private token: TokenStorageService) { }
+    private token: TokenStorageService) { }
 
   attemptAuth(credentials: AuthLoginInfo, remember: boolean): Observable<APIResponse> {
     if (remember) {
       localStorage.setItem('username', credentials.username);
-
     } else {
       localStorage.removeItem('username');
     }
