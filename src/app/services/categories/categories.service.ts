@@ -24,7 +24,7 @@ export class CategoriesService {
 
   deleteCategory(id: number, category: any) {
     let url = URL_SERVICES + `api/v1/category/delete/${id}`;
-    return this.http.put(url, category)
+    return this.http.delete(url, category)
       .pipe(map((resp: any) => resp));
   }
 

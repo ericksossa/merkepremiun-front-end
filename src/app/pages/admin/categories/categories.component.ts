@@ -31,8 +31,6 @@ export class CategoriesComponent implements OnInit {
 
     if (!this.selectCategory.id) {
       // save
-      console.log(category.value);
-
       this.categoriesService.createCategory(category.value)
         .subscribe(resp => {
           // bien
@@ -80,6 +78,7 @@ export class CategoriesComponent implements OnInit {
           });
           category.reset();
           this.submitted = false;
+          this.selectCategory.id = null;
 
         }, err => {
           // error
