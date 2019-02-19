@@ -7,6 +7,7 @@ import { PasswordValidation } from './password.validate';
 import { AuthLoginInfo } from '../../services/auth/login.info';
 import { TokenStorageService } from '../../services/auth/token-storage.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-register',
@@ -22,13 +23,18 @@ export class LoginRegisterComponent implements OnInit {
   err: string;
   errorMessage = '';
   username: any;
+  ipAddress: any;
   remember: boolean;
   roles: string[] = [];
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private tokenStorage: TokenStorageService
-  ) { }
+    private tokenStorage: TokenStorageService,
+    private http: HttpClient
+  ) {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => this.ipAddress = data);
+  }
 
   ngOnInit() {
     this.createFormControls();
@@ -112,8 +118,6 @@ export class LoginRegisterComponent implements OnInit {
   // login
   passIn(form: any) {
     this.submitted2 = true;
-    console.log(form);
-
     // validacion
     if (form.invalid) {
       return;
@@ -123,9 +127,10 @@ export class LoginRegisterComponent implements OnInit {
       form.value.username,
       form.value.password,
       // TODO
-      'Web - MacOS - Google Chrome',
-      '192.168.0.1'
+      'Web - Windows - Google Chrome',
+      this.ipAddress.ip
     );
+
     this.authService.attemptAuth(userAuth, form.remember)
       .subscribe(resp => {
         this.tokenStorage.saveToken(resp.data.accessToken);
