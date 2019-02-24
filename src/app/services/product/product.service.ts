@@ -17,6 +17,12 @@ export class ProductService {
       map((resp: any) => resp));
   }
 
+  allProductReference(id: number) {
+    let url = URL_SERVICES + `api/v1/product/allbyreference/${id}`;
+    return this.http.get(url).pipe(
+      map((resp: any) => resp));
+  }
+
   allRecommendedProducts() {
     let url = URL_SERVICES + `api/v1/product/allrecommended`;
     return this.http.get(url).pipe(

@@ -58,8 +58,6 @@ export class ReferencesComponent implements OnInit {
   }
 
   onSave(reference: NgForm) {
-    console.log(reference);
-
     this.submitted = true;
     if (!reference.valid) {
       return;
@@ -80,7 +78,11 @@ export class ReferencesComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
-          reference.reset();
+          // clear de los campos del frm
+          reference.reset({
+            categoryId: '',
+            name: ''
+          });
           this.submitted = false;
         }, err => {
           // error
@@ -111,7 +113,11 @@ export class ReferencesComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
-          reference.reset();
+          // clear de los campos del frm
+          reference.reset({
+            categoryId: '',
+            name: ''
+          });
           this.submitted = false;
           this.selectReference.id = null;
         }, err => {

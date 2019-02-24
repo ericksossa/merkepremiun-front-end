@@ -50,7 +50,7 @@
           </div>
           <div class="form-group">
             <label>Categoría</label>
-            <select [(ngModel)]="selectReference.category" name="categoryId" class="form-control" required>
+            <select [(ngModel)]="selectReference.categoryId" name="categoryId" class="form-control" required>
               <option value="">Selecciona una categoría</option>
               <option *ngFor="let cat of categories" [value]="cat['id']">
                 {{ cat.name }}
