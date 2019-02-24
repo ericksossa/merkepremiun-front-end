@@ -21,19 +21,18 @@ export class AdminProductComponent implements OnInit {
   isChecked: boolean;
   submitted = false;
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private referenceService: ReferenceService) { }
 
   ngOnInit() {
     this.getProducts();
     this.getReferences();
-    // this.path = URL_SERVICES + `api/v1/product/allimages/`;
   }
 
   openEdit(product: any) {
     this.selectProduct = product;
     console.log(this.selectProduct);
-
   }
 
   getProducts() {
@@ -65,7 +64,6 @@ export class AdminProductComponent implements OnInit {
 
   // obtiene el archivo de img
   readUrl(archive: File) {
-
     if (!archive) {
       return;
     }
@@ -80,8 +78,6 @@ export class AdminProductComponent implements OnInit {
 
   changed(event: any) {
     this.isChecked = event;
-    console.log(this.isChecked);
-
   }
 
   onSave(product: any) {
@@ -106,7 +102,14 @@ export class AdminProductComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
-          product.reset();
+          // clear de los campos del frm
+          product.reset({
+            name: '',
+            price: '',
+            referenceId: '',
+            stock: '',
+            recommended: ''
+          });
           this.submitted = false;
         }, err => {
           const Toast = swal.mixin({
@@ -136,7 +139,14 @@ export class AdminProductComponent implements OnInit {
             type: 'success',
             title: `${resp.message}`,
           });
-          product.reset();
+          // clear de los campos del frm
+          product.reset({
+            name: '',
+            price: '',
+            referenceId: '',
+            stock: '',
+            recommended: ''
+          });
           this.submitted = false;
           this.selectProduct.id = null;
         }, err => {

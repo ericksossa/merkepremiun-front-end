@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
       token: this.token.getToken(),
       refreshToken: this.token.getRefreshToken(),
       username: this.token.getUsername(),
-      // authorities: this.token.getAuthorities()
+      authorities: this.token.getAuthorities()
     };
   }
 

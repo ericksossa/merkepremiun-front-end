@@ -136,10 +136,10 @@ export class LoginRegisterComponent implements OnInit {
         this.tokenStorage.saveToken(resp.data.accessToken);
         this.tokenStorage.saveRefreshToken(resp.data.refreshToken);
         this.tokenStorage.saveUsername(resp.data.username);
-        this.tokenStorage.saveAuthorities(resp.data.authorities);
+        this.tokenStorage.saveAuthorities(resp.data.role);
         // bien
         window.location.reload();
-        this.router.navigate(['']);
+        // this.router.navigate(['']);
       },
         resp => {
           // error

@@ -15,7 +15,8 @@ export class ReferencesComponent implements OnInit {
   categories: CategoryModel[] = [];
   selectReference = new ReferenceModel();
   submitted = false;
-  constructor(private referecesService: ReferenceService,
+  constructor(
+    private referecesService: ReferenceService,
     private categoriesService: CategoriesService) { }
 
   ngOnInit() {
@@ -25,10 +26,7 @@ export class ReferencesComponent implements OnInit {
 
   getReferences() {
     this.referecesService.allReferences()
-      .subscribe(resp => {
-        console.log(resp);
-        this.references = resp.data;
-      });
+      .subscribe(resp => this.references = resp.data);
   }
 
   getCategories() {

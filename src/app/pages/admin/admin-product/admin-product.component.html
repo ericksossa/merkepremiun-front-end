@@ -16,6 +16,7 @@
               <th>Precio</th>
               <th>Peso</th>
               <th>Inventario</th>
+              <th>Marca</th>
               <th></th>
             </tr>
           </thead>
@@ -38,6 +39,9 @@
               </td>
               <td class="text-right">
                 {{product.stock}}
+              </td>
+              <td>
+                {{product.reference.name}}
               </td>
               <td>
                 <a class="btn btn-secondary " (click)="openEdit(product)">
@@ -121,6 +125,6 @@
 </div>
 <div id="gmap" class="contact-map">
 </div>
-<!-- modal -->
 
+<!-- modal -->
 <app-modal [valor]="path"></app-modal>
