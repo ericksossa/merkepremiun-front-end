@@ -42,8 +42,11 @@
             <ul class="nav navbar-nav">
               <li *ngIf="info.username" class="dropdown"><a><i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
                 </a>
-                <ul role="menu" class="sub-menu">
-                  <li><a (click)="logout()">Cerrar sesión</a></li>
+                <ul  class="sub-menu">
+                  <li>
+                    <a (click)="logout()">Cerrar sesión</a>
+                    
+                  </li> 
                 </ul>
               </li>
               <li><a routerLink="/cart" routerLinkActive="active"><i class="fa fa-shopping-cart"></i> Carro</a></li>
@@ -84,6 +87,7 @@
               <li *ngIf="info.authorities[0] == 1" class="dropdown"><a routerLinkActive="active">Administrar</a>
                 <ul role="menu" class="sub-menu">
                   <li><a routerLinkActive="active" routerLink="/admin/categories">Categorías</a></li>
+                  <li><a routerLinkActive="active" routerLink="/admin/customers">Clientes</a></li>
                   <li><a routerLinkActive="active" routerLink="/admin/references">Marcas</a></li>
                   <li><a routerLinkActive="active" routerLink="/admin/products">Productos</a></li>
                 </ul>

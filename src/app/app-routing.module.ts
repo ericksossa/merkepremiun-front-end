@@ -10,12 +10,14 @@ import { ReferencesComponent } from './pages/admin/references/references.compone
 import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
 import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CustomersComponent } from './pages/admin/customers/customers.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginRegisterComponent },
   { path: 'admin/categories', component: CategoriesComponent },
+  { path: 'admin/customers', component: CustomersComponent },
   { path: 'admin/references', component: ReferencesComponent },
   { path: 'admin/products', component: AdminProductComponent },
   { path: 'products', component: ProductComponent },

@@ -13,6 +13,7 @@ import { AdminProductComponent } from './admin/admin-product/admin-product.compo
 import { ModalComponent } from '../components/modal/modal.component';
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from '../shared/shared.module';
+import { CustomersComponent } from './admin/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     ReferencesComponent,
     AdminProductComponent,
     ModalComponent,
-    CartComponent
+    CartComponent,
+    CustomersComponent
 
   ],
   imports: [

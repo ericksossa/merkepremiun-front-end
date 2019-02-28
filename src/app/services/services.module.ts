@@ -10,7 +10,9 @@ import {
   CategoriesService,
   ProductService,
   ReferenceService,
-  TokenStorageService
+  CartService,
+  CustomersService,
+  TokenStorageService,
 } from '../services/service.index';
 
 @NgModule({
@@ -20,6 +22,8 @@ import {
     CategoriesService,
     ProductService,
     ReferenceService,
+    CartService,
+    CustomersService,
     TokenStorageService
   ],
   declarations: [],
