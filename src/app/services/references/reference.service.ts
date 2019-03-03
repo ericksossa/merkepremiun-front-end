@@ -34,4 +34,11 @@ export class ReferenceService {
       .pipe(map((resp: any) => resp));
   }
 
+  referenceById(referenceId: any) {
+    let url = URL_SERVICES + `api/v1/references/findbyid/${referenceId}`;
+    return this.http.get(url).pipe(
+      map((resp: any) => resp));
+  }
+
+
 }

@@ -11,6 +11,7 @@ import { AdminProductComponent } from './pages/admin/admin-product/admin-product
 import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CustomersComponent } from './pages/admin/customers/customers.component';
+import { DetailsProductComponent } from './pages/details-product/details-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'admin/references', component: ReferencesComponent },
   { path: 'admin/products', component: AdminProductComponent },
   { path: 'products', component: ProductComponent },
+  { path: 'products/details/:id', component: DetailsProductComponent},
   { path: 'cart', component: CartComponent },
   { path: 'contact', component: ContactComponent },
   // { path: '**', component: NopagefoundComponent }

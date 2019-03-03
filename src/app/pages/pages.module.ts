@@ -14,6 +14,8 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { CartComponent } from './cart/cart.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomersComponent } from './admin/customers/customers.component';
+import { DetailsProductComponent } from './details-product/details-product.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { CustomersComponent } from './admin/customers/customers.component';
     AdminProductComponent,
     ModalComponent,
     CartComponent,
-    CustomersComponent
+    CustomersComponent,
+    DetailsProductComponent
 
   ],
   imports: [
     CommonModule,
+    AppRoutingModule,
     FormsModule,
     SharedModule,
     ReactiveFormsModule,

@@ -17,6 +17,12 @@ export class ProductService {
       map((resp: any) => resp));
   }
 
+  productById(productId: number) {
+    let url = URL_SERVICES + `api/v1/product/findbyid/${productId}`;
+    return this.http.get(url).pipe(
+      map((resp) => resp));
+  }
+
   allProductReference(id: number) {
     let url = URL_SERVICES + `api/v1/product/allbyreference/${id}`;
     return this.http.get(url).pipe(

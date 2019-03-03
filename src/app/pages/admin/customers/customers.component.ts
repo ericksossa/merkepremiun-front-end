@@ -27,6 +27,7 @@ export class CustomersComponent implements OnInit {
   onSave(client: any) {
     this.customersService.updateDiscount(client.id, client)
       .subscribe(resp => {
+        this.getCustomers();
         // bien
         const Toast = swal.mixin({
           toast: true,

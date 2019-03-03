@@ -1,0 +1,46 @@
+<div class="row">
+  <!-- sidebar -->
+  <app-sidebar></app-sidebar>
+  <!-- /sidebar -->
+
+  <div class="col-sm-9 padding-right">
+    <div class="product-details" *ngFor="let item of product">
+      <!--product-details-->
+      <div class="col-sm-5">
+        <div class="view-product">
+          <img src="{{path}}{{item.imageURL}}" />
+          <h3>ZOOM</h3>
+        </div>
+
+
+      </div>
+      <div class="col-sm-7">
+        <div class="product-information">
+          <!--/product-information-->
+          <img src="" class="newarrival" alt="" />
+          <h2>{{item.name}}</h2>
+          <img src="" alt="" />
+          <span>
+            <span>{{item.price | currency}}</span>
+            <label>Cantidad:</label>
+            <input type="text" value="0" />
+            <button type="button" class="btn btn-fefault cart">
+              <i class="fa fa-shopping-cart"></i>
+              Añadir a la cesta
+            </button>
+          </span>
+          <p><b>Peso:</b> {{item.weight}}</p>
+          <p><b>Disponibilidad:</b> {{item.stock}}</p>
+          <p><b>Marca:</b>{{item.referenceId}}</p>
+          <a href=""><img src="" class="share img-responsive" alt="" /></a>
+        </div>
+        <!--/product-information-->
+      </div>
+    </div>
+    <!--/product-details-->
+
+
+
+
+  </div>
+</div>
