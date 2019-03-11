@@ -47,7 +47,6 @@ export class HomeComponent implements OnInit {
         this.references = resp.data;
         this.referenceId = resp.data.id;
         console.log(resp.data);
-        
       });
   }
   // productos x referencias

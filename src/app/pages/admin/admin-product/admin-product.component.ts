@@ -82,7 +82,6 @@ export class AdminProductComponent implements OnInit {
 
   onSave(product: any) {
     this.submitted = true;
-    console.log(product.value);
     if (!product.valid) {
       return;
     }

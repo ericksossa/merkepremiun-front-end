@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // paginación
 import { NgxPaginationModule } from 'ngx-pagination';
+// Import the library
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 // pages
 import { ContactComponent } from './contact/contact.component';
 import { ProductComponent } from './product/product.component';
@@ -37,7 +39,8 @@ import { AppRoutingModule } from '../app-routing.module';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxImageZoomModule.forRoot(),
   ],
   exports: []
 })
