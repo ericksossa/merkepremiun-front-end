@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { URL_SERVICES } from '../../config/config';
+import { ProductsModel } from 'src/app/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,7 @@ export class ProductService {
     formData.append('name', product.name);
     formData.append('weight', product.weight);
     formData.append('price', product.price);
+    formData.append('unitprice', product.unitprice);
     formData.append('stock', product.stock);
     formData.append('recommended', product.recommended);
     formData.append('referenceId', product.referenceId);
@@ -55,6 +57,7 @@ export class ProductService {
     formData.append('name', product.name);
     formData.append('weight', product.weight);
     formData.append('price', product.price);
+    formData.append('unitprice', product.unitprice);
     formData.append('stock', product.stock);
     formData.append('recommended', product.recommended);
     formData.append('referenceId', product.referenceId);

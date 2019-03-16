@@ -7,13 +7,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-8">
         <table class="table table-hover">
           <thead>
             <tr>
               <th>Imagen</th>
               <th>Nombre</th>
               <th>Precio</th>
+              <th>Precio por unidad de medida</th>
               <th>Peso</th>
               <th>Inventario</th>
               <th>Marca</th>
@@ -33,6 +34,9 @@
               </td>
               <td class="text-right">
                 {{product.price | currency}}
+              </td>
+              <td class="text-right">
+                {{product.unitprice }}
               </td>
               <td class="text-right">
                 {{product.weight}}
@@ -55,7 +59,7 @@
           </tbody>
         </table>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <form #f="ngForm" (ngSubmit)="onSave(f)">
           <label>Nombre del producto</label>
           <div class="form-group">
@@ -74,6 +78,11 @@
                 El precio es
                 obligatorio.*
               </small> </div>
+          </div>
+          <label>Precio por unidad de medida</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.unitprice" name="unitprice" class="form-control" placeholder="Ingresa el precio por unidad de medida"
+              type="text">
           </div>
           <label>Peso</label>
           <div class="form-group">

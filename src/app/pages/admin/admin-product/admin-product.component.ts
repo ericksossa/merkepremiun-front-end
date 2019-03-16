@@ -32,12 +32,14 @@ export class AdminProductComponent implements OnInit {
 
   openEdit(product: any) {
     this.selectProduct = product;
-    console.log(this.selectProduct);
   }
 
   getProducts() {
     this.productService.allProduct()
-      .subscribe(resp => this.products = resp.data);
+      .subscribe(resp => {
+        console.log(resp.data);
+        this.products = resp.data;
+      });
   }
 
   getReferences() {
@@ -105,6 +107,7 @@ export class AdminProductComponent implements OnInit {
           product.reset({
             name: '',
             price: '',
+            unitprice: '',
             referenceId: '',
             stock: '',
             recommended: ''
@@ -142,6 +145,7 @@ export class AdminProductComponent implements OnInit {
           product.reset({
             name: '',
             price: '',
+            unitprice: '',
             referenceId: '',
             stock: '',
             recommended: ''
