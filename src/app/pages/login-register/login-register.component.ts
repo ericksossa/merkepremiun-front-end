@@ -28,7 +28,6 @@ export class LoginRegisterComponent implements OnInit {
   roles: string[] = [];
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
     private tokenStorage: TokenStorageService,
     private http: HttpClient
   ) {
@@ -38,6 +37,11 @@ export class LoginRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.createFormControls();
+    // trae el usuario del storage
+    this.username = localStorage.getItem('username') || '';
+    if (this.username.length > 1) {
+      this.remember = true;
+    }
   }
 
   get f() { return this.forma.controls; }
@@ -131,7 +135,7 @@ export class LoginRegisterComponent implements OnInit {
       this.ipAddress.ip
     );
 
-    this.authService.attemptAuth(userAuth, form.remember)
+    this.authService.attemptAuth(userAuth, form.value.remember)
       .subscribe(resp => {
         this.tokenStorage.saveToken(resp.data.accessToken);
         this.tokenStorage.saveRefreshToken(resp.data.refreshToken);

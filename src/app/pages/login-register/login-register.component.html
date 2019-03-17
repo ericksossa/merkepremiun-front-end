@@ -8,7 +8,7 @@
           <h2>Ingresa a tu cuenta</h2>
           <form #form1="ngForm" (ngSubmit)="passIn(form1)">
             <div class="form-group">
-              <input ngModel name="username" type="text" placeholder="Usuario" class="form-control" required />
+              <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario" class="form-control" required />
               <div *ngIf="submitted2 && form1.form['controls'].username.invalid" class="text-danger"><small>
                   Por favor, escribe tu usuario.
                 </small> </div>
