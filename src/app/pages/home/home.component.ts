@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService, CategoriesService } from 'src/app/services/service.index';
 import { URL_SERVICES } from '../../config/config';
 import { ReferenceService } from '../../services/references/reference.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -56,6 +57,22 @@ export class HomeComponent implements OnInit {
         console.log(resp.data);
         this.productsReference = resp.data;
       });
+
+  }
+
+  addToCart() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      background: '#92DB66',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    Toast.fire({
+      type: 'success',
+      html: '<b style="color:white">Añadido a la cesta </b>'
+    });
 
   }
 

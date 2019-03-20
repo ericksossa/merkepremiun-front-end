@@ -18,10 +18,7 @@ export class CustomersComponent implements OnInit {
 
   getCustomers() {
     this.customersService.allCustomers()
-      .subscribe(resp => {
-        this.customers = resp.data;
-        console.log(resp);
-      });
+      .subscribe(resp => this.customers = resp.data);
   }
 
   onSave(client: any) {
