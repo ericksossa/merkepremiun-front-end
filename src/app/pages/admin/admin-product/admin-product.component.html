@@ -59,7 +59,9 @@
           </tbody>
         </table>
       </div>
+
       <div class="col-sm-4">
+
         <form #f="ngForm" (ngSubmit)="onSave(f)">
           <label>Nombre del producto</label>
           <div class="form-group">
@@ -81,8 +83,8 @@
           </div>
           <label>Precio por unidad de medida</label>
           <div class="form-group">
-            <input [(ngModel)]="selectProduct.unitprice" name="unitprice" class="form-control" placeholder="Ingresa el precio por unidad de medida"
-              type="text">
+            <input [(ngModel)]="selectProduct.unitprice" name="unitprice" class="form-control"
+              placeholder="Ingresa el precio por unidad de medida" type="text">
           </div>
           <label>Peso</label>
           <div class="form-group">
@@ -95,8 +97,8 @@
           </div>
           <label>Inventario</label>
           <div class="form-group">
-            <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control" placeholder="Articulos en el inventario"
-              type="number" step="any" min="0" required>
+            <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control"
+              placeholder="Articulos en el inventario" type="number" step="any" min="0" required>
             <div *ngIf="submitted && f.form['controls'].stock.invalid" class="text-danger"><small>
                 El inventario es
                 obligatorio.*
@@ -104,8 +106,9 @@
           </div>
 
           <div class="form-group">
-            <label><input [(ngModel)]="selectProduct.recommended" name="recommended" [checked]="selectProduct.recommended"
-                (change)="changed($event.target.checked)" type="checkbox"> Recomendado</label>
+            <label><input [(ngModel)]="selectProduct.recommended" name="recommended"
+                [checked]="selectProduct.recommended" (change)="changed($event.target.checked)" type="checkbox">
+              Recomendado</label>
           </div>
           <label>Marca</label>
           <div class="form-group">
@@ -121,17 +124,34 @@
           </div>
           <label>Imagen</label>
           <div class="form-group">
-            <input (change)="readUrl($event.target.files[0])" accept="image/*" name="stock" class="form-control" type="file"
-              required>
+            <!-- vistaprevia -->
+            <div class="col-md-3 p-20">
+              <div class="docs-preview clearfix">
+                <div *ngIf="imgSrc.length" class="container mt-3">
+                  <h5 class="text-themecolor">Vista Previa</h5>
+                  <div class="row">
+                    <div *ngFor="let img of imgSrc">
+                      <img class="img-fluid" [src]="img">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- cropper -->
+            <ngx-img (onSelect)="onSelect($event)" [text]="text" (onReset)="reset()" [config]="options"></ngx-img>
           </div>
           <button type="submit" class="btn btn-success">Guardar</button>
 
         </form>
-      </div>
-    </div>
 
+      </div>
+
+    </div>
   </div>
 </div>
+
+
+
 <div id="gmap" class="contact-map">
 </div>
 

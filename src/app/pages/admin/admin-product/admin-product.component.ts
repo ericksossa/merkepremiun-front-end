@@ -4,6 +4,7 @@ import { ProductService } from '../../../services/product/product.service';
 import { ProductsModel } from '../../../models/product.model';
 import { ReferenceService } from 'src/app/services/service.index';
 import { URL_SERVICES } from '../../../config/config';
+import { OPTIONS, TEXT } from 'src/app/models/optionscropper.model';
 
 declare var $: any;
 @Component({
@@ -20,6 +21,10 @@ export class AdminProductComponent implements OnInit {
   path: any;
   isChecked: boolean;
   submitted = false;
+  // opciones del cropper
+  options = OPTIONS;
+  text = TEXT;
+  imgSrc: any = [];
 
   constructor(
     private productService: ProductService,
@@ -64,18 +69,24 @@ export class AdminProductComponent implements OnInit {
       });
   }
 
-  // obtiene el archivo de img
-  readUrl(archive: File) {
-    if (!archive) {
-      return;
+  onSelect($event: any) {
+    this.imgSrc = [];
+    switch (typeof ($event)) {
+      case 'string':
+        this.imgSrc = [$event];
+        fetch($event).then(res => res.blob()).then(blob => {
+          this.uploadImage = blob;
+        });
+        break;
+      case 'object':
+        this.imgSrc = $event;
+        break;
+      default:
     }
-    this.uploadImage = archive;
-    let reader = new FileReader();
+  }
 
-    reader.onload = (event: any) => {
-      this.img = event.target.result;
-    };
-    reader.readAsDataURL(archive);
+  reset() {
+    this.imgSrc = [];
   }
 
   changed(event: any) {
@@ -90,6 +101,12 @@ export class AdminProductComponent implements OnInit {
 
     if (!this.selectProduct.id) {
       // save
+      if (!this.uploadImage) {
+        // validate
+        swal.fire('Importante', 'Debes seleccionar una imagen a subir', 'warning');
+        return;
+      }
+
       this.productService.createProduct(product.value, this.uploadImage)
         .subscribe(resp => {
           this.getProducts();
