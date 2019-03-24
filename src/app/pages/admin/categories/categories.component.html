@@ -1,0 +1,57 @@
+<div id="contact-page" class="container">
+  <div class="bg">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title text-center">Gestionar categorías</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Categorías</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let cat of categories">
+              <td>
+                {{cat.name}}
+              </td>
+              <td>
+                <a class="btn btn-secondary " (click)="openEdit(cat)">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn btn-secondary " (click)="onDelete(cat)">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-3">
+        <form #f="ngForm" (ngSubmit)="onSave(f)">
+          <div class="form-group">
+            <label>Categoría</label>
+            <input [(ngModel)]="selectCategory.name" name="name" class="form-control" placeholder="Ingresa la categoría"
+              type="text" required>
+            <div *ngIf="submitted && f.form.invalid" class="text-danger"><small>
+                El nombre de la categoría es
+                obligatorio.*
+              </small> </div>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+  <div id="gmap" class="contact-map">
+  </div>
+</div>

@@ -5,12 +5,27 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
 import { HomeComponent } from './pages/home/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
+import { CategoriesComponent } from './pages/admin/categories/categories.component';
+import { ReferencesComponent } from './pages/admin/references/references.component';
+import { AdminProductComponent } from './pages/admin/admin-product/admin-product.component';
+import { ProductComponent } from './pages/product/product.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { CustomersComponent } from './pages/admin/customers/customers.component';
+import { DetailsProductComponent } from './pages/details-product/details-product.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginRegisterComponent },
-  { path: '**', component: NopagefoundComponent }
+  { path: 'admin/categories', component: CategoriesComponent },
+  { path: 'admin/customers', component: CustomersComponent },
+  { path: 'admin/references', component: ReferencesComponent },
+  { path: 'admin/products', component: AdminProductComponent },
+  { path: 'products', component: ProductComponent },
+  { path: 'products/details/:id', component: DetailsProductComponent},
+  { path: 'cart', component: CartComponent },
+  { path: 'contact', component: ContactComponent },
+  // { path: '**', component: NopagefoundComponent }
 
 
 ];

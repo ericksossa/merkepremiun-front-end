@@ -7,17 +7,18 @@
         <div class="col-sm-6">
           <div class="contactinfo">
             <ul class="nav nav-pills">
-              <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i> servicioalcliente@merkepremium.com</a></li>
+              <li><a href="tel:+57 3007840930"><i class="fa fa-phone"></i></a></li>
+              <li><a href="mailto:servicioalcliente@merkepremium.com?subject=Email%20Subject"><i class="fa fa-envelope"></i>
+                  servicioalcliente@merkepremium.com</a></li>
             </ul>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="social-icons pull-right">
             <ul class="nav navbar-nav">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://www.facebook.com/Merkepremium-189690078382366/" target="newtab"><i class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://www.instagram.com/merkepremium/" target="newtab"><i class="fa fa-instagram"></i></a></li>
             </ul>
           </div>
         </div>
@@ -32,18 +33,25 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="logo pull-left">
-            <a href="index.html"><img src="assets/images/home/logo.png" alt="" /></a>
+            <a routerLink="/home"><img src="assets/images/home/logo.png" /></a>
           </div>
 
         </div>
         <div class="col-sm-8">
           <div class="shop-menu pull-right">
             <ul class="nav navbar-nav">
-              <li><a href="#"><i class="fa fa-user"></i> Cuenta</a></li>
-              <li><a href="#"><i class="fa fa-star"></i> Lista de compras</a></li>
-              <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Revisa</a></li>
-              <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Carro</a></li>
-              <li><a routerLinkActive="active" routerLink="login"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
+              <li *ngIf="info.username" class="dropdown"><a><i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
+                </a>
+                <ul  class="sub-menu">
+                  <li>
+                    <a (click)="logout()">Cerrar sesión</a>
+                    
+                  </li> 
+                </ul>
+              </li>
+              <li><a routerLink="/cart" routerLinkActive="active"><i class="fa fa-shopping-cart"></i> Carro</a></li>
+              <li *ngIf="!info.token"><a routerLinkActive="active" routerLink="/login"><i class="fa fa-lock"></i>Inicia sesión o
+                  registrate</a></li>
             </ul>
           </div>
         </div>
@@ -67,23 +75,23 @@
           </div>
           <div class="mainmenu pull-left">
             <ul class="nav navbar-nav collapse navbar-collapse">
-              <li><a routerLink="home" routerLinkActive="active" >Inicio</a></li>
+              <li><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
               <li class="dropdown"><a routerLinkActive="active">Tienda<i class="fa fa-angle-down"></i></a>
                 <ul role="menu" class="sub-menu">
-                  <li><a href="shop.html">Productos</a></li>
-                  <li><a href="product-details.html">Productos Detalle</a></li>
-                  <li><a href="checkout.html">Checkout</a></li>
-                  <li><a href="cart.html">Carro</a></li>
-                  <li><a href="login.html">Iniciar sesión</a></li>
+                  <li><a routerLink="/products" routerLinkActive="active">Productos</a></li>
+                  <li><a routerLink="/cart" routerLinkActive="active">Carro</a></li>
+                  <li *ngIf="!info.token"><a routerLink="/login">Iniciar sesión</a></li>
                 </ul>
               </li>
-              <!-- <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                <ul role="menu" class="sub-menu">
-                  <li><a href="blog.html">Blog List</a></li>
-                  <li><a href="blog-single.html">Blog Single</a></li>
-                </ul>
-              </li> -->
               <li><a routerLinkActive="active" routerLink="/contact">Contactenos</a></li>
+              <li *ngIf="info.authorities[0] == 1" class="dropdown"><a routerLinkActive="active">Administrar</a>
+                <ul role="menu" class="sub-menu">
+                  <li><a routerLinkActive="active" routerLink="/admin/categories">Categorías</a></li>
+                  <li><a routerLinkActive="active" routerLink="/admin/customers">Clientes</a></li>
+                  <li><a routerLinkActive="active" routerLink="/admin/references">Marcas</a></li>
+                  <li><a routerLinkActive="active" routerLink="/admin/products">Productos</a></li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>
@@ -98,5 +106,3 @@
   <!--/header-bottom-->
 </header>
 <!--/header-->
-
-

@@ -1,0 +1,65 @@
+<div id="contact-page" class="container">
+  <div class="bg">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title text-center">Gestionar Clientes</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>N° identificación</th>
+                <th>Nombre</th>
+                <th>Correo electrónico</th>
+                <th>Teléfono</th>
+                <th>Direción</th>
+                <th>Ciudad</th>
+                <th>Descuento</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let client of customers">
+                <td>
+                  {{client.identification}}
+                </td>
+                <td>
+                  {{client.name}}
+                </td>
+                <td>
+                  {{client.email}}
+                </td>
+                <td>
+                  {{client.telephone}}
+                </td>
+                <td>
+                  {{client.adress}}
+                </td>
+                <td>
+                  {{client.city}}
+                </td>
+                <td>
+                  <input [(ngModel)]="client.discount" name="discount" type="text" class="input-sm" placeholder="0">
+                </td>
+                <td>
+                  <a class="btn btn-secondary " (click)="onSave(client)">
+                    <i class="fa fa-save"></i>
+                  </a>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="gmap" class="contact-map">
+  </div>
+</div>

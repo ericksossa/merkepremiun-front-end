@@ -6,11 +6,21 @@
         <div class="login-form">
           <!--login form-->
           <h2>Ingresa a tu cuenta</h2>
-          <form action="#">
-            <input type="text" placeholder="Nombre" />
-            <input type="password" placeholder="Contraseña" />
+          <form #form1="ngForm" (ngSubmit)="passIn(form1)">
+            <div class="form-group">
+              <input [(ngModel)]="username" name="username" type="text" placeholder="Usuario" class="form-control" required />
+              <div *ngIf="submitted2 && form1.form['controls'].username.invalid" class="text-danger"><small>
+                  Por favor, escribe tu usuario.
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input ngModel name="password" type="password" placeholder="Contraseña" class="form-control" required />
+              <div *ngIf="submitted2 && form1.form['controls'].password.invalid" class="text-danger"><small>
+                  Por favor, escribe tu contraseña.
+                </small> </div>
+            </div>
             <span>
-              <input type="checkbox" class="checkbox">
+              <input [ngModel]="remember" name="remember" type="checkbox" class="checkbox">
               Recordar
             </span>
             <button type="submit" class="btn btn-default">Iniciar sesión</button>
@@ -18,6 +28,9 @@
         </div>
         <!--/login form-->
       </div>
+
+
+
       <div class="col-sm-1">
         <h2 class="or">O</h2>
       </div>
@@ -25,13 +38,83 @@
         <div class="signup-form">
           <!--sign up form-->
           <h2>Nuevo usuario</h2>
-          <form ngNativeValidate [formGroup]="forma" (ngSubmit)="toRegister()">
-            <input type="text" placeholder="Nombre" />
-            <input type="email" placeholder="Correo electrónico" />
-            <input type="password" placeholder="Contraseña" />
-            <input type="password" placeholder="Confirmar contraseña" />
-            <input type="text" placeholder="Teléfono" />
-            <input type="text" placeholder="Ciudad" />
+          <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <input class="form-control" formControlName="name" type="text" placeholder="Nombre" />
+              <div *ngIf="submitted && f['name'].errors" class="text-danger"><small>
+                  El nombre es
+                  obligatorio.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" formControlName="identification" type="number" placeholder="N° Documento de identificación" />
+              <div *ngIf="submitted && f['identification'].errors" class="text-danger"><small>
+                  La identificación es
+                  obligatoria.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" formControlName="username" type="text" #user placeholder="Nombre de usuario" />
+              <div *ngIf="submitted && f['username'].errors" class="text-danger"><small>
+                  El nombre de usuario es
+                  obligatorio.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input formControlName="email" type="email" class="form-control" #email placeholder="Correo electrónico" />
+              <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors.required" class="text-danger"><small>
+                    El correo es obligatorio.*
+                  </small>
+                </div>
+                <div *ngIf="f['email'].errors.email"><small>Por favor, ingresa tu correo electrónico.</small> </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input formControlName="password" type="password" placeholder="Contraseña" class="form-control" />
+              <div *ngIf="f['password'].errors?.minlength" class="text-danger"><small>
+                  La contraseña debe tener al menos 6 caracteres.*
+                </small> </div>
+              <div *ngIf="submitted && f['password'].errors" class="text-danger"><small>
+                  La contraseña es
+                  obligatoria.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+
+              <input formControlName="confirmPassword" type="password" placeholder="Confirmar contraseña" class="form-control" />
+              <div *ngIf="submitted && f['confirmPassword'].errors" class="text-danger"><small>
+                  Debes confirmar la contraseña.*
+                </small> </div>
+              <div *ngIf="submitted  && f['confirmPassword'].errors?.MatchPassword" class="text-danger"><small>
+                  Las contraseñas no coinciden.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input formControlName="adress" autocomplete="street-address" type="text" placeholder="Dirección" class="form-control" />
+              <div *ngIf="submitted && f['adress'].errors" class="text-danger"><small>
+                  La dirección es
+                  obligatorio.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input formControlName="telephone" type="tel" type="text" class="form-control bfh-phone" value="5555555555"
+                data-format="+57 (ddd)ddd-dddd" placeholder="Teléfono" />
+              <div *ngIf="submitted && f['telephone'].errors" class="text-danger"><small>
+                  El teléfono es
+                  obligatorio.*
+                </small> </div>
+              <div *ngIf="submitted && f['telephone'].errors?.maxlength" class="text-danger"><small>
+                  Sobrepasaste el número máximo de caracteres.*
+                </small> </div>
+            </div>
+            <div class="form-group">
+              <input formControlName="city" type="text" placeholder="Ciudad" class="form-control" />
+              <div *ngIf="submitted && f['city'].errors" class="text-danger"><small>
+                  La ciudad es obligatoria.*
+                </small> </div>
+            </div>
+
             <button type="submit" class="btn btn-default">Regístrate</button>
           </form>
         </div>

@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
+import { SignUpInfo } from '../../services/auth/signup.info';
+import { AuthService } from 'src/app/services/service.index';
+import swal from 'sweetalert2';
+import { PasswordValidation } from './password.validate';
+import { AuthLoginInfo } from '../../services/auth/login.info';
+import { TokenStorageService } from '../../services/auth/token-storage.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-register',
@@ -7,25 +15,167 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login-register.component.css']
 })
 export class LoginRegisterComponent implements OnInit {
+  @ViewChild('user') userInput: ElementRef;
+  @ViewChild('email') emailInput: ElementRef;
   forma: FormGroup;
-  constructor() { }
-
-  ngOnInit() {
-
-    this.forma = new FormGroup({
-      // validando campos del form
-      name: new FormControl(null, Validators.required),
-      username: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      password2: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      telephone: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      condiciones: new FormControl(false),
-
-    });
+  submitted = false;
+  submitted2 = false;
+  err: string;
+  errorMessage = '';
+  username: any;
+  ipAddress: any;
+  remember: boolean;
+  roles: string[] = [];
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private http: HttpClient
+  ) {
+    this.http.get<{ ip: string }>('https://jsonip.com')
+      .subscribe(data => this.ipAddress = data);
   }
 
-  toRegister() { }
+  ngOnInit() {
+    this.createFormControls();
+    // trae el usuario del storage
+    this.username = localStorage.getItem('username') || '';
+    if (this.username.length > 1) {
+      this.remember = true;
+    }
+  }
 
+  get f() { return this.forma.controls; }
+
+  createFormControls() {
+    this.forma = this.formBuilder.group({
+      // validando campos del form
+      name: [null, Validators.required],
+      identification: [null, Validators.required],
+      username: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      confirmPassword: [null, [Validators.required, Validators.minLength(6)]],
+      adress: [null, Validators.required],
+      telephone: [null, [Validators.required, Validators.maxLength(17)]],
+      city: [null, Validators.required],
+    },
+      {
+        validator: PasswordValidation.MatchPassword // metodo de validacion
+      });
+  }
+
+  // register
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.forma.invalid) {
+      // validación
+      return;
+    }
+
+    let user = new SignUpInfo(
+      this.forma.value.name,
+      this.forma.value.identification,
+      this.forma.value.username,
+      this.forma.value.email,
+      this.forma.value.password,
+      this.forma.value.adress,
+      this.forma.value.city,
+      this.forma.value.telephone,
+    );
+
+    this.authService.signUp(user).subscribe(
+      (resp: any) => {
+        // bien
+        const Toast = swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000
+        });
+        Toast.fire({
+          type: 'success',
+          title: `${resp.message}.`
+        });
+        this.clearForm();
+      },
+      resp => {
+        // error
+        this.err = resp.error.errors.message;
+        const Toast = swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 4000
+        });
+        Toast.fire({
+          type: 'error',
+          title: `${resp.error.message}`,
+          text: `${this.err}.`
+        });
+        this.validFocus();
+      }
+    );
+
+  }
+
+  // login
+  passIn(form: any) {
+    this.submitted2 = true;
+    // validacion
+    if (form.invalid) {
+      return;
+    }
+
+    let userAuth = new AuthLoginInfo(
+      form.value.username,
+      form.value.password,
+      // TODO
+      'Web - Windows - Google Chrome',
+      this.ipAddress.ip
+    );
+
+    this.authService.attemptAuth(userAuth, form.value.remember)
+      .subscribe(resp => {
+        this.tokenStorage.saveToken(resp.data.accessToken);
+        this.tokenStorage.saveRefreshToken(resp.data.refreshToken);
+        this.tokenStorage.saveUsername(resp.data.username);
+        this.tokenStorage.saveAuthorities(resp.data.role);
+        // bien
+        this.router.navigate(['home']);
+        // window.location.reload();
+      },
+        resp => {
+          // error
+          this.errorMessage = resp.error.errors.message;
+          const Toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000
+          });
+          Toast.fire({
+            type: 'error',
+            title: `${resp.error.message}`,
+            text: `${this.errorMessage}.`
+          });
+
+        }
+      );
+  }
+
+  clearForm() {
+    this.forma.reset();
+    this.submitted = false;
+  }
+
+  validFocus() {
+    if (this.err.search('nombre') === 3) {
+      this.userInput.nativeElement.focus();
+    } else {
+      this.emailInput.nativeElement.focus();
+    }
+
+  }
 }

@@ -1,0 +1,159 @@
+<div id="contact-page" class="container">
+  <div class="bg">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title text-center">Gestionar productos</h2>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Precio por unidad de medida</th>
+              <th>Peso</th>
+              <th>Inventario</th>
+              <th>Marca</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                <a class="btn btn-secondary pull-center" (click)="onImage(product.imageURL )">
+                  <i class="glyphicon glyphicon-picture"></i>
+                </a>
+              </td>
+              <td>
+                {{product.name}}
+              </td>
+              <td class="text-right">
+                {{product.price | currency}}
+              </td>
+              <td class="text-right">
+                {{product.unitprice }}
+              </td>
+              <td class="text-right">
+                {{product.weight}}
+              </td>
+              <td class="text-right">
+                {{product.stock}}
+              </td>
+              <td>
+                {{product.reference.name}}
+              </td>
+              <td>
+                <a class="btn btn-secondary " (click)="openEdit(product)">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a class="btn btn-secondary " (click)="onDelete(product)">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-4">
+
+        <form #f="ngForm" (ngSubmit)="onSave(f)">
+          <label>Nombre del producto</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.name" name="name" class="form-control" placeholder="Ingresa el producto"
+              type="text" required>
+            <div *ngIf="submitted && f.form['controls'].name.invalid" class="text-danger"><small>
+                El nombre del producto es
+                obligatorio.*
+              </small> </div>
+          </div>
+          <label>Precio</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.price" name="price" class="form-control" placeholder="Ingresa el precio"
+              type="number" step="any" min="0" required>
+            <div *ngIf="submitted && f.form['controls'].price.invalid" class="text-danger"><small>
+                El precio es
+                obligatorio.*
+              </small> </div>
+          </div>
+          <label>Precio por unidad de medida</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.unitprice" name="unitprice" class="form-control"
+              placeholder="Ingresa el precio por unidad de medida" type="text">
+          </div>
+          <label>Peso</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.weight" name="weight" class="form-control" placeholder="Ingresa el peso"
+              type="number" step="any" min="0" required>
+            <div *ngIf="submitted && f.form['controls'].weight.invalid" class="text-danger"><small>
+                El peso es
+                obligatorio.*
+              </small> </div>
+          </div>
+          <label>Inventario</label>
+          <div class="form-group">
+            <input [(ngModel)]="selectProduct.stock" name="stock" class="form-control"
+              placeholder="Articulos en el inventario" type="number" step="any" min="0" required>
+            <div *ngIf="submitted && f.form['controls'].stock.invalid" class="text-danger"><small>
+                El inventario es
+                obligatorio.*
+              </small> </div>
+          </div>
+
+          <div class="form-group">
+            <label><input [(ngModel)]="selectProduct.recommended" name="recommended"
+                [checked]="selectProduct.recommended" (change)="changed($event.target.checked)" type="checkbox">
+              Recomendado</label>
+          </div>
+          <label>Marca</label>
+          <div class="form-group">
+            <select [(ngModel)]="selectProduct.referenceId" name="referenceId" class="form-control" required>
+              <option value="">Selecciona una marca</option>
+              <option *ngFor="let reference of references" [value]="reference['id']">
+                {{ reference.name }}
+              </option>
+            </select>
+            <div *ngIf="submitted && f.form['controls'].referenceId.invalid" class="text-danger"><small>
+                Debes de seleccionar una marca.*
+              </small> </div>
+          </div>
+          <label>Imagen</label>
+          <div class="form-group">
+            <!-- vistaprevia -->
+            <div class="row">
+              <div>
+                <div *ngIf="imgSrc.length" class="col-xs-6 col-md-3">
+                  <h5>Vista Previa</h5>
+                  <div >
+                    <div *ngFor="let img of imgSrc">
+                      <img class="img-thumbnail" [src]="img">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- cropper -->
+            <ngx-img (onSelect)="onSelect($event)" [text]="text" (onReset)="reset()" [config]="options"></ngx-img>
+          </div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div id="gmap" class="contact-map">
+</div>
+
+<!-- modal -->
+<app-modal [valor]="path"></app-modal>
