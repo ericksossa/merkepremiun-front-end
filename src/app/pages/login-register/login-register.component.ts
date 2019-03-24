@@ -29,6 +29,7 @@ export class LoginRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
+    private router: Router,
     private http: HttpClient
   ) {
     this.http.get<{ ip: string }>('https://jsonip.com')
@@ -142,8 +143,8 @@ export class LoginRegisterComponent implements OnInit {
         this.tokenStorage.saveUsername(resp.data.username);
         this.tokenStorage.saveAuthorities(resp.data.role);
         // bien
-        window.location.reload();
-        // this.router.navigate(['']);
+        this.router.navigate(['home']);
+        // window.location.reload();
       },
         resp => {
           // error

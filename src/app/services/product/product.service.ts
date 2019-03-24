@@ -37,6 +37,8 @@ export class ProductService {
   }
 
   createProduct(product: any, img: File) {
+    console.log(img);
+
     let url = URL_SERVICES + `api/v1/product/create`;
     const formData = new FormData();
     formData.append('imageURL', img);

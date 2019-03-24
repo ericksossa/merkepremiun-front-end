@@ -125,13 +125,13 @@
           <label>Imagen</label>
           <div class="form-group">
             <!-- vistaprevia -->
-            <div class="col-md-3 p-20">
-              <div class="docs-preview clearfix">
-                <div *ngIf="imgSrc.length" class="container mt-3">
-                  <h5 class="text-themecolor">Vista Previa</h5>
-                  <div class="row">
+            <div class="row">
+              <div>
+                <div *ngIf="imgSrc.length" class="col-xs-6 col-md-3">
+                  <h5>Vista Previa</h5>
+                  <div >
                     <div *ngFor="let img of imgSrc">
-                      <img class="img-fluid" [src]="img">
+                      <img class="img-thumbnail" [src]="img">
                     </div>
                   </div>
                 </div>

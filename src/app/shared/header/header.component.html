@@ -50,7 +50,7 @@
                 </ul>
               </li>
               <li><a routerLink="/cart" routerLinkActive="active"><i class="fa fa-shopping-cart"></i> Carro</a></li>
-              <li><a routerLinkActive="active" routerLink="/login"><i class="fa fa-lock"></i>Inicia sesión o
+              <li *ngIf="!info.token"><a routerLinkActive="active" routerLink="/login"><i class="fa fa-lock"></i>Inicia sesión o
                   registrate</a></li>
             </ul>
           </div>
@@ -80,7 +80,7 @@
                 <ul role="menu" class="sub-menu">
                   <li><a routerLink="/products" routerLinkActive="active">Productos</a></li>
                   <li><a routerLink="/cart" routerLinkActive="active">Carro</a></li>
-                  <li><a routerLink="/login">Iniciar sesión</a></li>
+                  <li *ngIf="!info.token"><a routerLink="/login">Iniciar sesión</a></li>
                 </ul>
               </li>
               <li><a routerLinkActive="active" routerLink="/contact">Contactenos</a></li>

@@ -25,46 +25,46 @@ export class TokenStorageService {
 
     signOut() {
         // TODO
-        window.sessionStorage.clear();
-        // window.location.reload();
+        localStorage.clear();
+        // localStoraged();
     }
     public saveToken(token: string) {
-        window.sessionStorage.removeItem(TOKEN_KEY);
-        window.sessionStorage.setItem(TOKEN_KEY, token);
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.setItem(TOKEN_KEY, token);
     }
 
     public getToken(): string {
-        return sessionStorage.getItem(TOKEN_KEY);
+        return localStorage.getItem(TOKEN_KEY);
     }
 
     public saveRefreshToken(refreshToken: string) {
-        window.sessionStorage.removeItem(REFRESH_TOKEN_KEY);
-        window.sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+        localStorage.removeItem(REFRESH_TOKEN_KEY);
+        localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
     }
 
     public getRefreshToken(): string {
-        return sessionStorage.getItem(REFRESH_TOKEN_KEY);
+        return localStorage.getItem(REFRESH_TOKEN_KEY);
     }
 
     public saveUsername(username: string) {
-        window.sessionStorage.removeItem(USERNAME_KEY);
-        window.sessionStorage.setItem(USERNAME_KEY, username);
+        localStorage.removeItem(USERNAME_KEY);
+        localStorage.setItem(USERNAME_KEY, username);
     }
 
     public getUsername(): string {
-        return sessionStorage.getItem(USERNAME_KEY);
+        return localStorage.getItem(USERNAME_KEY);
     }
 
     public saveAuthorities(authorities: string[]) {
-        window.sessionStorage.removeItem(AUTHORITIES_KEY);
-        window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+        localStorage.removeItem(AUTHORITIES_KEY);
+        localStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
     }
 
     public getAuthorities(): string[] {
         this.roles = [];
 
-        if (sessionStorage.getItem(TOKEN_KEY)) {
-            this.roles.push(sessionStorage.getItem(AUTHORITIES_KEY));
+        if (localStorage.getItem(TOKEN_KEY)) {
+            this.roles.push(localStorage.getItem(AUTHORITIES_KEY));
         }
 
         return this.roles;
