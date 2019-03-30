@@ -41,10 +41,7 @@ export class AdminProductComponent implements OnInit {
 
   getProducts() {
     this.productService.allProduct()
-      .subscribe(resp => {
-        console.log(resp.data);
-        this.products = resp.data;
-      });
+      .subscribe(resp => this.products = resp.data);
   }
 
   getReferences() {
@@ -129,6 +126,7 @@ export class AdminProductComponent implements OnInit {
             stock: '',
             recommended: ''
           });
+          this.reset();
           this.submitted = false;
         }, err => {
           const Toast = swal.mixin({
