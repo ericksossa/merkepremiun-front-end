@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   ProductService,
   CategoriesService,
   CartService
-} from "src/app/services/service.index";
-import { URL_SERVICES } from "../../config/config";
-import { ReferenceService } from "../../services/references/reference.service";
-import Swal from "sweetalert2";
+} from 'src/app/services/service.index';
+import { URL_SERVICES } from '../../config/config';
+import { ReferenceService } from '../../services/references/reference.service';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   products: any[] = [];
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private refenceService: ReferenceService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getRefences();
@@ -59,29 +59,30 @@ export class HomeComponent implements OnInit {
     this.productService
       .allProductReference(this.referenceId)
       .subscribe(resp => {
-        //console.log(resp.data);
+        // console.log(resp.data);
         this.productsReference = resp.data;
       });
   }
 
-  addToCart(obj: any) {
-    let productCart: ProductoCart = {
-      name: obj.name,
-      price: obj.price
-    };
+  public addToCart(obj: any) {
 
-    this.cartService.productsArray.push(productCart);
-    console.log(this.cartService.productsArray);
+
+    // let productCart: ProductoCart = {
+    //   name: obj.name,
+    //   price: obj.price
+    // };
+
+    this.cartService.addProductToCart(obj);
     const Toast = Swal.mixin({
       toast: true,
-      position: "top-end",
-      background: "#92DB66",
+      position: 'top-end',
+      background: '#92DB66',
       showConfirmButton: false,
       timer: 3000
     });
 
     Toast.fire({
-      type: "success",
+      type: 'success',
       html: '<b style="color:white">Añadido a la cesta </b>'
     });
   }

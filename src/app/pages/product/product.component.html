@@ -15,13 +15,13 @@
               <h2>{{ product.price | currency }}</h2>
               <p>{{ product.name }}</p>
               <p>{{product.unitprice | titlecase}}</p>
-              <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
+              <a (click)="homeComponent.addToCart(product)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
             </div>
             <div class="product-overlay">
               <div class="overlay-content">
                 <h2>{{product.price | currency}}</h2>
                 <p>{{product.name}}</p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
+                <a (click)="homeComponent.addToCart(product)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
               </div>
             </div>
           </div>

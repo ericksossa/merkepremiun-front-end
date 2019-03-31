@@ -25,9 +25,13 @@ export class TokenStorageService {
 
     signOut() {
         // TODO
-        localStorage.clear();
+        localStorage.removeItem(REFRESH_TOKEN_KEY);
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(USERNAME_KEY);
+        localStorage.removeItem(AUTHORITIES_KEY);
         // localStoraged();
     }
+
     public saveToken(token: string) {
         localStorage.removeItem(TOKEN_KEY);
         localStorage.setItem(TOKEN_KEY, token);

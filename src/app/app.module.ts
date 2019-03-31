@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomeComponent } from './pages/home/home.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    FiltersComponent,
 
   ],
   imports: [
@@ -23,7 +25,7 @@ import { HomeComponent } from './pages/home/home.component';
     ServicesModule,
     SharedModule
   ],
-  providers: [],
+  providers: [HomeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

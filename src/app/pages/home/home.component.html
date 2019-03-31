@@ -7,9 +7,6 @@
 
 <!-- main content -->
 <div class="col-sm-9 padding-right">
-
-
-
     <div class="recommended_items" *ngIf="recommendProducts.length > 0">
         <!--recommended_items-->
         <h2 class="title text-center">Articulos recomendados</h2>
@@ -22,9 +19,9 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{path}}{{recommend.imageURL}}" alt="" />
-                                    <h2>{{ recommend.price|currency }}</h2>
+                                    <h2>{{ recommend.price|currency:'USD':'symbol':'1.0-0' }}</h2>
                                     <p>{{recommend.name}}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
+                                    <a (click)="addToCart(recommend)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
                                 </div>
 
                             </div>
@@ -52,14 +49,14 @@
                 <div class="single-products">
                     <div class="productinfo text-center">
                         <img src="{{path}}{{product.imageURL}}" alt="" />
-                        <h2>{{product.price| currency}}</h2>
+                        <h2>{{product.price| currency:'USD':'symbol':'1.0-0'}}</h2>
                         <p>{{product.name}}</p>
                         <p>{{product.unitprice | titlecase}}</p>
                         <a (click)="addToCart(product)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
                     </div>
                     <div class="product-overlay">
                         <div class="overlay-content">
-                            <h2>{{product.price | currency}}</h2>
+                            <h2>{{product.price | currency:'USD':'symbol':'1.0-0'}}</h2>
                             <p>{{product.name}}</p>
                             <a (click)="addToCart(product)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
                         </div>

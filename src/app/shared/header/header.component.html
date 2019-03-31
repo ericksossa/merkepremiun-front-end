@@ -8,7 +8,8 @@
           <div class="contactinfo">
             <ul class="nav nav-pills">
               <li><a href="tel:+57 3007840930"><i class="fa fa-phone"></i></a></li>
-              <li><a href="mailto:servicioalcliente@merkepremium.com?subject=Email%20Subject"><i class="fa fa-envelope"></i>
+              <li><a href="mailto:servicioalcliente@merkepremium.com?subject=Email%20Subject"><i
+                    class="fa fa-envelope"></i>
                   servicioalcliente@merkepremium.com</a></li>
             </ul>
           </div>
@@ -16,9 +17,11 @@
         <div class="col-sm-6">
           <div class="social-icons pull-right">
             <ul class="nav navbar-nav">
-              <li><a href="https://www.facebook.com/Merkepremium-189690078382366/" target="newtab"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://www.facebook.com/Merkepremium-189690078382366/" target="newtab"><i
+                    class="fa fa-facebook"></i></a></li>
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="https://www.instagram.com/merkepremium/" target="newtab"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://www.instagram.com/merkepremium/" target="newtab"><i class="fa fa-instagram"></i></a>
+              </li>
             </ul>
           </div>
         </div>
@@ -39,18 +42,21 @@
         </div>
         <div class="col-sm-8">
           <div class="shop-menu pull-right">
-            <ul class="nav navbar-nav">
-              <li *ngIf="info.username" class="dropdown"><a><i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
+            <ul class="nav navbar-nav ">
+
+              <li class="nav-item dropdown " *ngIf="info.username">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user"></i> Hola <span>{{info.username}}</span>
                 </a>
-                <ul  class="sub-menu">
-                  <li>
-                    <a (click)="logout()">Cerrar sesión</a>
-                    
-                  </li> 
-                </ul>
+                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                  <a (click)="logout()"> <i class="fa fa-sign-in"></i>Cerrar sesión</a>
+                </div>
               </li>
+
               <li><a routerLink="/cart" routerLinkActive="active"><i class="fa fa-shopping-cart"></i> Carro</a></li>
-              <li *ngIf="!info.token"><a routerLinkActive="active" routerLink="/login"><i class="fa fa-lock"></i>Inicia sesión o
+              <li *ngIf="!info.token"><a routerLinkActive="active" routerLink="/login"><i class="fa fa-lock"></i>Inicia
+                  sesión o
                   registrate</a></li>
             </ul>
           </div>
